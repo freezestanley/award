@@ -1,4 +1,13 @@
-<!DOCTYPE html><html><head><link rel="stylesheet" href="/umi.css"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"><title>ants-h5</title><script>~(function (designWidth, maxWidth) {
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+	<title><%= context.title %></title>
+	<script>
+		~(function (designWidth, maxWidth) {
 			var doc = document,
 				win = window,
 				docEl = doc.documentElement,
@@ -42,4 +51,13 @@
 					doc.body.style.fontSize = "16px";
 				}, false);
 			}
-		})(375, 750);</script></head><body><div id="root" class="root"></div><script type="text/javascript"></script><script>window.routerBase = "/";</script><script src="/umi.js"></script></body></html>
+		})(375, 750);
+	</script>
+	<div id="<%= context.config.mountElementId %>" class="root"></div>
+	<script type="text/javascript"></script>
+</head>
+
+<body>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+.header {
+  height: 0.4rem;
+  line-height: 0.4rem;
+  text-align: center;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  background: var(--bg-color);
+  :global {
+    .goback {
+      width: 0.4rem;
+      height: 0.4rem;
+      float: left;
+      color: var(--major-color);
+    }
+    .head-title {
+      font-size: 0.16rem;
+      width: calc(100% - 0.4rem);
+      float: left;
+      text-indent: -40px;
+    }
+  }
+}
