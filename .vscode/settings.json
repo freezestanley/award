@@ -1,0 +1,10 @@
+{
+  "editor.rulers": [90],
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  // https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "debug.node.autoAttach": "on"
+}
