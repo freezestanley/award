@@ -36,6 +36,31 @@ body {
   color: var(--green) !important;
 }
 
+.za-picker-view__mask--top::after,
+.za-picker-view__mask--bottom::before {
+  border-color: var(--t2) !important;
+}
+
+.za-input input {
+  color: #fff !important;
+}
+.za-input input::-webkit-input-placeholder,
+.za-input textarea::-webkit-input-placeholder {
+  color: var(--t2) !important;
+}
+.za-input input::-ms-input-placeholder,
+.za-input textarea::-ms-input-placeholder {
+  color: var(--t2) !important;
+}
+.za-input input::placeholder,
+.za-input textarea::placeholder {
+  color: var(--t2) !important;
+}
+
+.za-cell__inner:active {
+  background: transparent !important;
+}
+
 
 :root {
   --btn-bg: linear-gradient(180deg,rgba(126,206,30,1) 0%,rgba(84,129,44,1) 100%);

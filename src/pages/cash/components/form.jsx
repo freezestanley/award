@@ -41,7 +41,7 @@ export default function RechargeForm(props) {
             { label: 'fgg', value: 4 },
           ]}
           onOk={selected => {
-            // console.log('Select onOk: ', selected);
+            console.log('Select onOk: ', selected);
             // let val = selected.map(item => item.value);
             // console.log('[40] form.jsx: ', val);
             setState({

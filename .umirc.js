@@ -6,11 +6,26 @@ export default {
       path: '/',
       component: '../layouts/index',
       routes: [
+        // 游戏首页
         { path: '/', component: '../pages/index' },
-        { path: '/:id/recharge', component: '../pages/recharge' },
-        { path: '/recharge/result', component: '../pages/recharge/result' },
-        { path: '/recharge/record', component: '../pages/recharge/record' },
+        // 登录
         { path: '/login', component: '../pages/login' },
+        // 游戏充值
+        { path: '/:id/recharge', component: '../pages/recharge' },
+        // 充值记录
+        { path: '/recharge/record', component: '../pages/recharge/record' },
+        // 充值结果
+        { path: '/recharge/result', component: '../pages/recharge/result' },
+        // 提现记录
+        { path: '/cash/record', component: '../pages/cash/record' },
+        // 提现审核
+        { path: '/cash/review', component: '../pages/cash/review' },
+        // 我的
+        { path: '/mine', component: '../pages/mine' },
+        // 我的 - 佣金
+        { path: '/mine/commission', component: '../pages/mine/commission' },
+        // 我的 - 邀请
+        { path: '/mine/invite', component: '../pages/mine/invite' },
       ],
     },
   ],

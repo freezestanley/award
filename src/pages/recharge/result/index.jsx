@@ -2,8 +2,8 @@ import React from 'react';
 import router from 'umi/router';
 import Header from '@/components/Header';
 import Button from '@/components/Button';
-import OkIcon from './ok.svg';
-import FailIcon from './fail.svg';
+import OkIcon from '@/assets/icon/ok.svg';
+import FailIcon from '@/assets/icon/fail.svg';
 import styles from './index.less';
 
 export default function Result({ isOk = true, data = '100钻石' }) {
