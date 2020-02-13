@@ -1,7 +1,52 @@
 html, body, #root {
   height: 100%;
+  background: var(--dark);
+  font-family: Chinese Quote, -apple-system, PingFang SC, Microsoft YaHei, Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #fff;
 }
 
 body {
   margin: 0;
+}
+
+.za-picker__title {
+  color: var(--t3) !important;
+}
+
+.za-picker__submit {
+  color: var(--green) !important;
+}
+
+.za-picker, .za-picker-view {
+  background-color: var(--dark) !important;
+}
+
+.za-picker-view__mask {
+  background: transparent !important;
+}
+
+.za-wheel__item {
+  color: var(--t2) !important;
+}
+
+.za-wheel__item--selected {
+  color: var(--green) !important;
+}
+
+
+:root {
+  --btn-bg: linear-gradient(180deg,rgba(126,206,30,1) 0%,rgba(84,129,44,1) 100%);
+  --green: #B1FC6F;
+  --dark: #1B263A;
+  --gray: #bcbcbc;
+  --max-width: 640px;
+
+  --t1: #A3A8B0;
+  --t2: #485161;
+  --t3: #E6E6E6;
+
+  --border-color: var(--t2) !important;
 }

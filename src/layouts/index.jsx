@@ -1,3 +1,4 @@
+import 'zarm/dist/zarm.min.css';
 import styles from './index.less';
 
 function BasicLayout(props) {

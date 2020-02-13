@@ -1,23 +1,35 @@
 .header {
-  height: 0.4rem;
-  line-height: 0.4rem;
+  height: 50px;
+  width: 100%;
+  line-height: 50px;
   text-align: center;
   position: fixed;
+  top: 0;
+  left: 0;
   z-index: 999;
-  width: 100%;
-  background: var(--bg-color);
+  margin-left: 0;
+  background: var(--dark);
   :global {
     .goback {
-      width: 0.4rem;
-      height: 0.4rem;
+      width: 50px;
+      height: 50px;
       float: left;
-      color: var(--major-color);
     }
     .head-title {
       font-size: 0.16rem;
-      width: calc(100% - 0.4rem);
+      width: calc(100% - 50px);
       float: left;
       text-indent: -40px;
     }
+  }
+}
+
+.close {
+  width: 50px;
+  height: 50px;
+  float: left;
+  img {
+    margin: 15px;
+    width: 20px;
   }
 }
