@@ -1,26 +1,26 @@
 import React from 'react';
 import { connect } from 'dva';
-import GameInfo from '@/components/game/GameItem';
 import Header from '@/components/Header';
+import { formatNumber } from '@/utils/tools';
 import RechargeProtocol from './components/protocol';
-import RechargeForm from './components/form';
-import RechargeNavbar from './components/navbar';
+import CashForm from './components/form';
 
 import styles from './index.less';
 
-function Recharge(props) {
-  const game = props.game;
+function Cash(props) {
   return (
     <>
-      <Header title="充值" />
+      <Header title="提现" />
       <div style={{ padding: '60px 0' }}>
-        <GameInfo className={styles.game_info} data={game} />
-        <RechargeForm className={styles.form} />
+        <div className={styles.amount}>
+          <p className="ants-amount">{formatNumber(1233.23)}</p>
+          <p className="desc">当前佣金(元)</p>
+        </div>
+        <CashForm className={styles.form} />
         <RechargeProtocol />
       </div>
-      <RechargeNavbar />
     </>
   );
 }
 
-export default connect(state => state.global)(Recharge);
+export default connect(state => state.global)(Cash);

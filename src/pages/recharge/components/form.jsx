@@ -8,6 +8,8 @@ import styles from './index.less';
 export default function RechargeForm(props) {
   const modalRef = useRef(null);
   const [state, setState] = useReducer((o, n) => ({ ...o, ...n }), {
+    init: false,
+    exist: false,
     account: '',
     area: '',
     amount: 0,
@@ -17,6 +19,15 @@ export default function RechargeForm(props) {
     if (modalRef.current) {
       modalRef.current.show();
     }
+  };
+  const getAccount = () => {
+    setState({
+      init: false,
+    });
+    // api
+    setState({
+      exist: Math.random() > 0.5,
+    });
   };
   return (
     <div className={cns(styles.form, props.className)}>
@@ -29,11 +40,18 @@ export default function RechargeForm(props) {
           </span>
         }
       >
-        <Input type="text" placeholder="请输入游戏账号" onChange={e => setState({ account: e })} />
+        <Input
+          type="text"
+          onBlur={getAccount}
+          placeholder="请输入游戏账号"
+          onChange={e => setState({ account: e })}
+        />
       </Cell>
+      {state.init || (!state.exist && <span className="id-error">该游戏无此账号，请重新输入</span>)}
       <Cell title="所在区服">
         <Select
           // value={value}
+          placeholder="请选择游戏区服"
           dataSource={[
             { label: 'xxx', value: 1 },
             { label: 'as', value: 2 },
@@ -50,7 +68,7 @@ export default function RechargeForm(props) {
           }}
         />
       </Cell>
-      <Cell title="充值金额">
+      <Cell title="充值金额(元)">
         <Input
           type="text"
           placeholder="请输入充值金额"

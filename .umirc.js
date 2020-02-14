@@ -17,12 +17,14 @@ export default {
         // 充值结果
         { path: '/recharge/result', component: '../pages/recharge/result' },
         // 提现记录
+        { path: '/cash', component: '../pages/cash' },
+        // 提现记录
         { path: '/cash/record', component: '../pages/cash/record' },
         // 提现审核
         { path: '/cash/review', component: '../pages/cash/review' },
         // 我的
         { path: '/mine', component: '../pages/mine' },
-        // 我的 - 佣金
+        // 我的 - 佣金明细
         { path: '/mine/commission', component: '../pages/mine/commission' },
         // 我的 - 邀请
         { path: '/mine/invite', component: '../pages/mine/invite' },

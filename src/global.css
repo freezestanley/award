@@ -61,12 +61,19 @@ body {
   background: transparent !important;
 }
 
+.ants-amount {
+  margin: 0;
+  font-size: 26px;
+  color: var(--green);
+}
+
 
 :root {
   --btn-bg: linear-gradient(180deg,rgba(126,206,30,1) 0%,rgba(84,129,44,1) 100%);
   --green: #B1FC6F;
   --dark: #1B263A;
   --gray: #bcbcbc;
+  --red: #FF5050;
   --max-width: 640px;
 
   --t1: #A3A8B0;

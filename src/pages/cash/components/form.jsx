@@ -1,68 +1,35 @@
-import React, { useRef, useReducer } from 'react';
-import { Input, Cell, Select } from 'zarm';
+import React, { useReducer } from 'react';
 import cns from 'classnames';
-import FindID from './find_id';
+import { Input, Cell } from 'zarm';
+import Button from '@/components/Button';
 
 import styles from './index.less';
 
-export default function RechargeForm(props) {
-  const modalRef = useRef(null);
+export default function CashForm(props) {
   const [state, setState] = useReducer((o, n) => ({ ...o, ...n }), {
     account: '',
     area: '',
     amount: 0,
     options: [],
   });
-  const hanldeFindAccount = () => {
-    if (modalRef.current) {
-      modalRef.current.show();
-    }
-  };
   return (
     <div className={cns(styles.form, props.className)}>
-      <h3>充值信息</h3>
-      <Cell
-        title="游戏账号"
-        description={
-          <span className="find" onClick={hanldeFindAccount}>
-            如何查账号
-          </span>
-        }
-      >
-        <Input type="text" placeholder="请输入游戏账号" onChange={e => setState({ account: e })} />
-      </Cell>
-      <Cell title="所在区服">
-        <Select
-          // value={value}
-          dataSource={[
-            { label: 'xxx', value: 1 },
-            { label: 'as', value: 2 },
-            { label: 'df', value: 3 },
-            { label: 'fgg', value: 4 },
-          ]}
-          onOk={selected => {
-            console.log('Select onOk: ', selected);
-            // let val = selected.map(item => item.value);
-            // console.log('[40] form.jsx: ', val);
-            setState({
-              area: selected[0].value,
-            });
-          }}
-        />
-      </Cell>
-      <Cell title="充值金额">
+      <h3>提现信息</h3>
+      <Cell title="提现金额">
         <Input
           type="text"
-          placeholder="请输入充值金额"
-          // value={this.state.inputValue}
-          // onChange={this.handleInputChange}
+          placeholder="单次提现上限200元"
+          onChange={e => setState({ account: e })}
         />
       </Cell>
-      <p className="game-currency">
-        到账<span>xx</span>
-        <i>钻石</i>
-      </p>
-      <FindID ref={modalRef} url={require('@/assets/game/1.png')} />
+      <Cell title="支付宝账号">
+        <Input type="text" placeholder="请输入收款的支付宝账号" />
+      </Cell>
+      <Cell title="确认账号">
+        <Input type="text" placeholder="请再次输入收款的支付宝账号" />
+      </Cell>
+
+      <Button style={{ marginTop: 30 }}>提交</Button>
     </div>
   );
 }

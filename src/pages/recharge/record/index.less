@@ -1,0 +1,85 @@
+.record {
+  :global {
+    .item {
+      padding: 0.1rem 0;
+      margin-bottom: 0.1rem;
+      background: rgb(41,51,70);
+      border-radius: 10px;
+      padding: 0 0.1rem;
+      &.za-collapse-item--active {
+        .gb {
+          display: none;
+        }
+      }
+      .za-collapse-item__arrow {
+        display: none;
+      }
+      .za-collapse-item__title {
+        padding: 0;
+        > div {
+          height: 100%;
+        }
+      }
+      .za-collapse-item__title::after,
+      .za-collapse-item__content::after {
+        display: none;
+      }
+      .info {
+        font-size: 0.14rem;
+        margin-bottom: 0.05rem;
+        i {
+          font-style: normal;
+          color: var(--green);
+        }
+      }
+      .order {
+        color: #A3A8B0;
+        font-size: 0.12rem;
+        padding: 0.1rem 0;
+      }
+      .order-item {
+        display: flex;
+        margin-bottom: 0.1rem;
+        justify-content: space-between;
+      }
+    }
+  }
+}
+
+.gameinfo {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  :global {
+    img {
+      width: 40px;
+      height: 40px;
+      margin-right: 0.1rem;
+    }
+    .txt {
+      display: flex;
+      align-items: center;
+      span, time {
+        display: block;
+        line-height: 18px;
+      }
+      time {
+        font-size: 12px;
+        color: #A3A8B0;
+      }
+    }
+    .gb {
+      position: absolute;
+      right: 0;
+      top: 8px;
+      line-height: 18px;
+      font-size: 12px;
+      color: #A3A8B0;
+      i {
+        font-style: normal;
+        color: #fff;
+      }
+    }
+  }
+}

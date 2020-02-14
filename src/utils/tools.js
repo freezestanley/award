@@ -14,3 +14,5 @@ export const getUserInfo = () => {
     return JSON.parse(data);
   }
 };
+
+export const formatNumber = num => num.toLocaleString('en-US');

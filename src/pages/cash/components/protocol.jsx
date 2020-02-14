@@ -5,15 +5,15 @@ import styles from './index.less';
 export default function RechargeProtocol(props) {
   return (
     <div className={cns(styles.protocol, props.className)}>
-      <h3>充值说明</h3>
+      <h3>提现说明</h3>
       <p>
-        1. 将自动充值专用平台币，请在游戏使用专用平台币支付、<span>专用平台币有效期为永久</span>
+        1. 单次提现金额最少1月，最多<span>200</span>元，次数不限
       </p>
       <p>
-        2. 充值单比<span>可分多次</span>消费
+        2. 提现后<span>24小时内</span>完成审核，审核通过后直接放到支付宝账户
       </p>
       <p>
-        3. 充值多笔<span>可累计1次</span>使用
+        3. 为确保提现成功，请输入自己的<span>正确支付宝账号</span>
       </p>
     </div>
   );
