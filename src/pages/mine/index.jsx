@@ -36,7 +36,7 @@ export default function Mine() {
   };
   const handleCopy = () => {
     copy('ants001');
-    Toast.show('复制成功，请前往微信粘贴搜索');
+    Toast.show('复制成功，请前往微信添加');
   };
   return (
     <div className={styles.mine}>
@@ -85,7 +85,7 @@ export default function Mine() {
         maskClosable
         onCancel={() => setState({ visible: false })}
       >
-        <p>请添加客服微信：ants001，进行充值问题咨询或反馈~</p>
+        <p style={{ marginBottom: 30 }}>ants001</p>
         <Button onClick={handleCopy}>复制微信号</Button>
       </Modal>
       <Navbar active="mine" />
