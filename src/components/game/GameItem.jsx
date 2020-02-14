@@ -11,7 +11,7 @@ export default function GameInfo({ data, className }) {
         <div>
           <div className="name">{data.name}</div>
           <div className="desc">
-            充值<span>{data.discount}</span>折
+            充值<span>{data.discount}折</span>
           </div>
         </div>
       </div>

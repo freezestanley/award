@@ -67,4 +67,11 @@ export default {
       },
     ],
   ],
+  proxy: {
+    '/api': {
+      target: 'http://11455-ants-backend.test.za-tech.net',
+      changeOrigin: true,
+      pathRewrite: { '^/api': '/' },
+    },
+  },
 };
