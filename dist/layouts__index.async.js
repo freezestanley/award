@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([[1],{PUTc:function(n,a,e){n.exports={normal:"normal___3AbSb"}},tCqT:function(n,a,e){"use strict";e.r(a);var t=e("q1tI"),c=e.n(t),r=(e("prtM"),e("PUTc")),o=e.n(r);function i(n){return c.a.createElement("div",{className:o.a.normal},c.a.createElement("div",{className:o.a.main},n.children))}a["default"]=i}}]);

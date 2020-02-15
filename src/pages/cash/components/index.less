@@ -1,0 +1,51 @@
+.protocol {
+  line-height: 0.2rem;
+  h3 {
+    font-size: 0.16rem;
+  }
+  p {
+    color: var(--t1);
+    font-size: 0.12rem;
+  }
+  :global {
+    span {
+      color: var(--green);
+    }
+  }
+}
+
+.form {
+  :global {
+    h3 {
+      font-size: 0.16rem;
+    }
+    .find {
+      color: var(--green);
+      font-size: 12px;
+    }
+    .game-currency {
+      font-size: 14px;
+      text-align: right;
+      span {
+        color: var(--green);
+      }
+      i {
+        font-style: normal;
+      }
+    }
+    .za-cell {
+      background: transparent;
+      &::after {
+        left: 0;
+        border-top: none;
+        border-bottom: solid 1px rgba(255, 255, 255, 0.1);
+      }
+      .za-cell__inner {
+        padding: 0;
+      }
+      .za-cell__title {
+        color: var(--t3);
+      }
+    }
+  }
+}
