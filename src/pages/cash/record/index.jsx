@@ -7,17 +7,15 @@ import { connect } from 'dva';
 import styles from './index.less';
 
 function MineCommission({ myWithdraws = [], dispatch }) {
-  const uid = sessionStorage.getItem('user') || '';
   useEffect(() => {
     dispatch({
       type: 'user/getMyWithdraws',
       payload: {
-        hackuid: uid,
         page: 1,
         limit: 1000,
       },
     });
-  }, [dispatch, uid]);
+  }, [dispatch]);
 
   return (
     <>

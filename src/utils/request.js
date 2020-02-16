@@ -19,14 +19,8 @@ service.interceptors.request.use(
     }
 
     const uid = window.sessionStorage.getItem('user') || '';
-    // 处理站点切换等参数
+
     if (config.method === 'post') {
-      // const _site = typeof config.data === 'object' ? config.data : JSON.parse(config.data);
-      // // const _test = hostname !== 'localhost' ? {} : {}; // 发布生产记得删除
-      // config.data = {
-      //   ..._site,
-      //   hackuid: uid,
-      // };
       config.url = config.url + '?hackuid=' + uid;
     }
 
@@ -34,7 +28,6 @@ service.interceptors.request.use(
       config.params.hackuid = uid;
     }
 
-    console.log('====>>>>>>>config===>', config);
     return config;
   },
   error => {

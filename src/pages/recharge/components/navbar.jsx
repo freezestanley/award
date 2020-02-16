@@ -5,7 +5,7 @@ import styles from './index.less';
 import { promotionLink } from '@/services/user.js';
 const shareIcon = require('@/assets/icon/share.svg');
 
-export default function RechargeNavbar({  priceAmount =0, handleSubmit }) {
+export default function RechargeNavbar({  topUpAmount=0,priceAmount =0, handleSubmit }) {
   const handleRecharge = () => {
     handleSubmit()
     // checkLogin(() => {
@@ -13,10 +13,18 @@ export default function RechargeNavbar({  priceAmount =0, handleSubmit }) {
     // });
   };
   const handleShare = () => {
-    const uid = window.sessionStorage.getItem("user")||"";
-    promotionLink({hackuid: uid, shareUrl: encodeURIComponent("/")}).then(res => {
+
+    promotionLink({ shareUrl: encodeURIComponent(window.location.origin)}).then(res => {
 
       console.log("分享链接===>", res)
+      const {respCode,content} =res
+
+      if(respCode===0){
+        if(content["promotionLink"]){
+
+        }
+      }
+
       // alert(gameId);
     });
   };
@@ -27,7 +35,7 @@ export default function RechargeNavbar({  priceAmount =0, handleSubmit }) {
           应付金额<span>{priceAmount}元</span>
         </p>
         <p className="t2">
-          已省<span>xx元</span>
+          已省<span>{topUpAmount-priceAmount}元</span>
         </p>
         <img className="share" onClick={handleShare} src={shareIcon} alt="share" />
       </div>

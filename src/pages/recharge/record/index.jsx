@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Collapse } from 'zarm';
-// import { formatNumber } from '@/utils/tools';
+import { formatDate } from '@/utils/tools';
 // import { cashStatus } from '@/utils/game';
 import Header from '@/components/Header';
 import { connect } from 'dva';
@@ -40,18 +40,18 @@ const testData = {
 };
 
 function MineCommission({ myTopUps = [], dispatch }) {
-  const uid = sessionStorage.getItem('user') || '';
+
 
   useEffect(() => {
     dispatch({
       type: 'user/getMyTopUps',
       payload: {
-        hackuid: uid,
+
         page: 1,
         limit: 1000,
       },
     });
-  }, [dispatch, uid]);
+  }, [dispatch]);
   return (
     <>
       <Header title="我的充值" />
@@ -66,7 +66,7 @@ function MineCommission({ myTopUps = [], dispatch }) {
                   <GameInfo
                     data={{
                       ...testData,
-                      time: item.time,
+                      time: formatDate(item.time),
                     }}
                   />
                 }

@@ -6,12 +6,13 @@ import RechargeProtocol from './components/protocol';
 import RechargeForm from './components/form';
 import RechargeNavbar from './components/navbar';
 import router from 'umi/router';
-import { createOrder } from '@/services/user.js';
+import { createOrder, accountInRegion } from '@/services/user.js';
 
 import styles from './index.less';
 
 function Recharge({ gameRegionsList = [], gameInfo, dispatch, location }) {
   // const game = props.game;
+  console.log('=====>>>.router', location);
   const { gameId = '' } = location.query;
   const { discountRatePercent = 1, coinRate = 1 } = gameInfo;
   const [state, setState] = useState({
@@ -21,7 +22,7 @@ function Recharge({ gameRegionsList = [], gameInfo, dispatch, location }) {
     topUpAmount: '',
   });
 
-  // console.log('===<>>>>>>rest', gameInfo);
+  const [exists, setExists] = useState(true);
 
   useEffect(() => {
     dispatch({
@@ -55,7 +56,23 @@ function Recharge({ gameRegionsList = [], gameInfo, dispatch, location }) {
       coinAmount: (state.topUpAmount / 100) * coinRate,
     };
 
-    createOrder(params).then(res => {});
+    accountInRegion({
+      gameId: gameId,
+      gameRegion: state.gameRegion,
+      gameUsername: state.gameUsername,
+    }).then(res => {
+      // console.log('验证账号收否存在===》', res);
+      const { respCode, content } = res;
+      if (respCode == 0) {
+        if (content.exists) {
+          createOrder(params).then(res => {});
+          setExists(true);
+        } else {
+          // createOrder(params).then(res => {});
+          setExists(false);
+        }
+      }
+    });
   };
 
   // console.log(state);
@@ -69,10 +86,12 @@ function Recharge({ gameRegionsList = [], gameInfo, dispatch, location }) {
           data={{ ...gameInfo, discountRatePercent: Number(gameInfo.discountRatePercent) / 10 }}
         />
         <RechargeForm
+          exists={exists}
           coinAmount={(state.topUpAmount / 100) * coinRate}
           sendValue={sendValue}
           list={gameRegionsList}
           className={styles.form}
+          location={location}
         />
         <RechargeProtocol />
       </div>
@@ -80,6 +99,7 @@ function Recharge({ gameRegionsList = [], gameInfo, dispatch, location }) {
         handleSubmit={handleSubmit}
         priceAmount={state.topUpAmount * (Number(discountRatePercent) / 100)}
         gameId={gameId}
+        topUpAmount={state.topUpAmount}
       />
     </>
   );

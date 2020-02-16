@@ -16,7 +16,7 @@ function Home({ dispatch, gameList = [] }) {
       type: 'global/gameList',
       payload: {
         page: 1,
-        limit: 100,
+        limit: 1000,
       },
     });
   }, [dispatch]);
