@@ -52,12 +52,7 @@ export default function RechargeForm(props) {
         <Select
           // value={value}
           placeholder="请选择游戏区服"
-          dataSource={[
-            { label: 'xxx', value: 1 },
-            { label: 'as', value: 2 },
-            { label: 'df', value: 3 },
-            { label: 'fgg', value: 4 },
-          ]}
+          dataSource={props.list}
           onOk={selected => {
             // console.log('Select onOk: ', selected);
             // let val = selected.map(item => item.value);

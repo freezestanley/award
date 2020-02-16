@@ -1,4 +1,6 @@
 import router from 'umi/router';
+import moment from 'moment';
+import numeral from 'numeral';
 
 export const checkLogin = cb => {
   if (!!window.sessionStorage.getItem('user')) {
@@ -40,4 +42,16 @@ export const Query = {
       .join('&');
     return str;
   },
+};
+
+export const formatDate = (data, format = 'YYYY-MM-DD') => {
+  if (data) {
+    return moment(data).format(format);
+  } else {
+    return '';
+  }
+};
+
+export const toThousands = value => {
+  return numeral(value || 0).format('0,0.00');
 };

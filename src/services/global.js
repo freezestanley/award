@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import request from '@/utils/request.js';
+
 // 登录
 export function login(params) {
   return Promise.resolve({
@@ -20,7 +22,7 @@ export function login(params) {
 
 // 获取单个游戏信息
 export function gameInfo(params) {
-  return axios({
+  return request({
     url: '/api/public/game',
     method: 'GET',
     params,
@@ -29,7 +31,7 @@ export function gameInfo(params) {
 
 // 游戏列表
 export function gameList(params) {
-  return axios({
+  return request({
     url: '/api/public/games',
     method: 'GET',
     params,
@@ -44,3 +46,5 @@ export function gameRegions(params) {
     params,
   });
 }
+
+// GET /public/gameRegions

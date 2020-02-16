@@ -2,17 +2,19 @@ import React from 'react';
 import router from 'umi/router';
 import { checkLogin } from '@/utils/tools';
 import styles from './index.less';
-
+import { promotionLink } from '@/services/user.js';
 const shareIcon = require('@/assets/icon/share.svg');
 
-export default function RechargeNavbar() {
+export default function RechargeNavbar({ gameId = '' }) {
   const handleRecharge = () => {
     checkLogin(() => {
       router.push('/recharge/result');
     });
   };
   const handleShare = () => {
-    alert('Share');
+    promotionLink().then(res => {
+      alert(gameId);
+    });
   };
   return (
     <div className={styles.navbar}>

@@ -1,10 +1,11 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { Cell, Modal, Toast } from 'zarm';
 import copy from 'copy-to-clipboard';
 import router from 'umi/router';
 import Button from '@/components/Button';
 import Navbar from '@/components/Navbar';
-import { getUserInfo, formatNumber } from '@/utils/tools';
+import { getUserInfo, formatNumber, toThousands } from '@/utils/tools';
+import { connect } from 'dva';
 
 import styles from './index.less';
 
@@ -17,16 +18,25 @@ function MenuTitle({ img, name }) {
   );
 }
 
-export default function Mine() {
+function Mine({ userInfo = {}, dispatch }) {
   const [state, setState] = useReducer((o, n) => ({ ...o, ...n }), {
     visible: false,
   });
   console.log('[5] index.jsx: ', getUserInfo());
   const data = getUserInfo();
-  if (!data) {
-    router.push('/login');
-    return null;
-  }
+
+  useEffect(() => {
+    if (!data) {
+      router.push('/login');
+      return null;
+    } else {
+      dispatch({
+        type: 'user/getMyInfo',
+        payload: {},
+      });
+    }
+  }, [data, dispatch]);
+
   const handleModal = () => {
     setState({ visible: true });
   };
@@ -38,23 +48,27 @@ export default function Mine() {
     copy('ants001');
     Toast.show('复制成功，请前往微信添加');
   };
+
+  // console.log();
+  console.log('===>state==>用户信息', userInfo);
+
   return (
     <div className={styles.mine}>
       <div className="user">
-        <img src={require('@/assets/icon/default.png')} alt="avatar" />
+        <img src={userInfo.avatarUrl} alt="avatar" />
         <div>
-          <p className="name">{data.name}</p>
-          <p className="phone">{data.phone}</p>
+          <p className="name">{userInfo.userName}</p>
+          <p className="phone">{userInfo.phoneMasked}</p>
         </div>
         <img className="esc" onClick={handleESC} src={require('@/assets/icon/esc.svg')} alt="ESC" />
       </div>
       <div className="wallet">
         <div className="w1" onClick={() => router.push('/cash')}>
-          <p className="amount">{formatNumber(12043)}</p>
+          <p className="amount">{toThousands(userInfo.balance)}</p>
           <p className="txt extractable">可提现佣金(元)</p>
         </div>
         <div onClick={() => router.push('/mine/commission')}>
-          <p className="amount">{formatNumber(512434.23)}</p>
+          <p className="amount">{toThousands(userInfo.cumulativeBalance)}</p>
           <p className="txt total">累计佣金(元)</p>
         </div>
       </div>
@@ -92,3 +106,7 @@ export default function Mine() {
     </div>
   );
 }
+
+export default connect(state => {
+  return state.user;
+})(Mine);
