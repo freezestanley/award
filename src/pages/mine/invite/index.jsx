@@ -4,23 +4,28 @@ import { connect } from 'dva';
 import styles from './index.less';
 
 function MineInvite({ myPromotions = [], dispatch }) {
+  const uid = sessionStorage.getItem('user') || '';
   useEffect(() => {
     dispatch({
       type: 'user/getMyPromotions',
-      payload: {},
+      payload: {
+        hackuid: uid,
+        page: 1,
+        limit: 1000,
+      },
     });
-  }, [dispatch]);
+  }, [dispatch, uid]);
 
   return (
     <>
       <Header title="我邀请的人" />
       <div style={{ padding: '60px 0 30px' }} className={styles.invite}>
-        {myPromotions.map(item => {
+        {myPromotions.map((item, key) => {
           return (
-            <div key={item.sourceUserName} className="item">
+            <div key={key} className="item">
               <div>
-                <img src={require('@/assets/icon/default.png')} alt="avatar" />
-                <span>{item.sourceUserName}</span>
+                <img src={item.targetUserAvatarUrl} alt={item.targetUserName} />
+                <span>{item.targetUserName}</span>
               </div>
               <time>{item.promotionTimestamp}</time>
             </div>

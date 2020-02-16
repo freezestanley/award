@@ -31,94 +31,48 @@ export default {
   effects: {
     *getMyTopUps({ payload }, { put, call }) {
       const res = yield call(myTopUps, payload);
+      const { list = [] } = res;
+      console.log('===>充值记录==>', res);
       yield put({
         type: 'setMyTopUps',
-        payload: [
-          {
-            coinAmount: '1200钻石',
-            gameName: '混沌之刃',
-            gameRegion: '电信一区',
-            gameUsername: '27993332@qq.com',
-            orderId: '2353124533',
-            priceAmount: '100.34',
-            time: 1581534690,
-            topUpAmount: '100.34',
-          },
-          {
-            coinAmount: '41900钻石',
-            gameName: '混沌之刃',
-            gameRegion: '电信一区',
-            gameUsername: '27993332@qq.com',
-            orderId: '2353124533',
-            priceAmount: '100.34',
-            time: 1581534690,
-            topUpAmount: '100.34',
-          },
-        ],
+        payload: list,
       });
       return res;
     },
     // 获取体现记录
     *getMyWithdraws({ payload }, { put, call }) {
       const res = yield call(myWithdraws, payload);
+      const { list = [] } = res;
       yield put({
         type: 'setMyWithdraws',
-        payload: [
-          {
-            payAccount: '23423423',
-            payChannel: '支付宝',
-            status: '审核中,发放中,已发放，审核不通过',
-            time: 1581534690,
-            withdrawAmount: '13.45',
-          },
-          {
-            payAccount: '23423423',
-            payChannel: '支付宝',
-            status: '审核中,发放中,已发放，审核不通过',
-            time: 1581214690,
-            withdrawAmount: '100.45',
-          },
-        ],
+        payload: list,
       });
       return res;
     },
     *getMyPromotions({ payload }, { put, call }) {
       const res = yield call(myPromotions, payload);
+      const { list = [] } = res;
       yield put({
         type: 'setMyPromotions',
-        payload: [
-          {
-            promotionTimestamp: 1581534690,
-            sourceUserId: '1234',
-            sourceUserName: '张三',
-            targetUserAvatarUrl: 'http://xxx.png',
-            targetUserId: '4321',
-            targetUserName: '李四',
-          },
-          {
-            promotionTimestamp: 1581534690,
-            sourceUserId: '1234',
-            sourceUserName: '张三1',
-            targetUserAvatarUrl: 'http://xxx.png',
-            targetUserId: '4321',
-            targetUserName: '李四1',
-          },
-        ],
+        payload: list,
       });
       return res;
     },
     *getMyInfo({ payload }, { put, call }) {
       const res = yield call(myInfo, payload);
+      const {
+        content = {
+          avatarUrl: '',
+          balance: '',
+          cumulativeBalance: '',
+          phoneMasked: '',
+          userId: '',
+          userName: '',
+        },
+      } = res;
       yield put({
         type: 'setMyInfo',
-        payload: {
-          avatarUrl: require('@/assets/icon/default.png'),
-          balance: '1534.7',
-          cumulativeBalance: '1523.34',
-          phoneMasked: '137****4353',
-          userId: 2345,
-          userName: '2345',
-        },
+        payload: content,
       });
       return res;
     },

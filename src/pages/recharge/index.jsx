@@ -14,7 +14,7 @@ function Recharge({ gameRegionsList = [], gameInfo, dispatch, location }) {
   // const game = props.game;
   const { gameId = '' } = location.query;
 
-  console.log('===<>>>>>>rest', location);
+  console.log('===<>>>>>>rest', gameInfo);
 
   useEffect(() => {
     dispatch({

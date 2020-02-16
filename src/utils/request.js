@@ -37,12 +37,14 @@ service.interceptors.response.use(
    */
   response => {
     const res = response.data || {};
-    const msg = res.msg || res.respMsg;
+    const msg = res.respMsg;
     const code = res.respCode;
 
-    if (!code || code === false) {
+    if (code != 0) {
       message.error(msg);
     }
+
+    console.log('request-=====>>>>>', res);
     return res;
   },
   error => {

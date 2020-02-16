@@ -5,7 +5,7 @@ import FindID from './find_id';
 
 import styles from './index.less';
 
-export default function RechargeForm(props) {
+export default function RechargeForm({ list = [], className = '' }) {
   const modalRef = useRef(null);
   const [state, setState] = useReducer((o, n) => ({ ...o, ...n }), {
     init: false,
@@ -30,7 +30,7 @@ export default function RechargeForm(props) {
     });
   };
   return (
-    <div className={cns(styles.form, props.className)}>
+    <div className={cns(styles.form, className)}>
       <h3>充值信息</h3>
       <Cell
         title="游戏账号"
@@ -52,24 +52,21 @@ export default function RechargeForm(props) {
         <Select
           // value={value}
           placeholder="请选择游戏区服"
-          dataSource={props.list}
+          dataSource={list}
           onOk={selected => {
             // console.log('Select onOk: ', selected);
             // let val = selected.map(item => item.value);
             // console.log('[40] form.jsx: ', val);
+            const { region = {} } = selected;
+            console.log('selected===>>>>', selected);
             setState({
-              area: selected[0].value,
+              area: region['value'],
             });
           }}
         />
       </Cell>
       <Cell title="充值金额(元)">
-        <Input
-          type="text"
-          placeholder="请输入充值金额"
-          // value={this.state.inputValue}
-          // onChange={this.handleInputChange}
-        />
+        <Input type="text" placeholder="请输入充值金额" onChange={e => setState({ num: e })} />
       </Cell>
       <p className="game-currency">
         到账<span>xx</span>

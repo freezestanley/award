@@ -40,13 +40,18 @@ const testData = {
 };
 
 function MineCommission({ myTopUps = [], dispatch }) {
-  console.log('用户充值记录===>', myTopUps);
+  const uid = sessionStorage.getItem('user') || '';
+
   useEffect(() => {
     dispatch({
       type: 'user/getMyTopUps',
-      payload: {},
+      payload: {
+        hackuid: uid,
+        page: 1,
+        limit: 1000,
+      },
     });
-  }, [dispatch]);
+  }, [dispatch, uid]);
   return (
     <>
       <Header title="我的充值" />
@@ -54,7 +59,18 @@ function MineCommission({ myTopUps = [], dispatch }) {
         <Collapse animated defaultActiveKey={'0'}>
           {myTopUps.map((item, idx) => {
             return (
-              <Collapse.Item key={idx} className="item" title={<GameInfo data={testData} />}>
+              <Collapse.Item
+                key={idx}
+                className="item"
+                title={
+                  <GameInfo
+                    data={{
+                      ...testData,
+                      time: item.time,
+                    }}
+                  />
+                }
+              >
                 <div className="order">
                   <InfoItem name="订单号" value={item.orderId} />
                   <InfoItem name="游戏账号" value={item.gameUsername} />

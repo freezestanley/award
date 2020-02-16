@@ -63,3 +63,12 @@ export function promotionLink(params) {
     params,
   });
 }
+
+// 提现
+export function createWithdraw(params) {
+  return request({
+    url: '/pay/createWithdraw',
+    method: 'POST',
+    data: params,
+  });
+}
