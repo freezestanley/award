@@ -5,22 +5,26 @@ import styles from './index.less';
 import { promotionLink } from '@/services/user.js';
 const shareIcon = require('@/assets/icon/share.svg');
 
-export default function RechargeNavbar({ gameId = '' }) {
+export default function RechargeNavbar({  priceAmount =0, handleSubmit }) {
   const handleRecharge = () => {
-    checkLogin(() => {
-      router.push('/recharge/result');
-    });
+    handleSubmit()
+    // checkLogin(() => {
+    //   router.push('/recharge/result');
+    // });
   };
   const handleShare = () => {
-    promotionLink().then(res => {
-      alert(gameId);
+    const uid = window.sessionStorage.getItem("user")||"";
+    promotionLink({hackuid: uid, shareUrl: encodeURIComponent("/")}).then(res => {
+
+      console.log("分享链接===>", res)
+      // alert(gameId);
     });
   };
   return (
     <div className={styles.navbar}>
       <div className="left">
         <p className="t1">
-          应付金额<span>xx元</span>
+          应付金额<span>{priceAmount}元</span>
         </p>
         <p className="t2">
           已省<span>xx元</span>

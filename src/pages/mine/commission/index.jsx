@@ -8,7 +8,10 @@ function MineCommission({ myDistributions = [], dispatch }) {
   useEffect(() => {
     dispatch({
       type: 'user/getMyDistributions',
-      payload: {},
+      payload: {
+        page:1,
+        limit:1000
+      },
     });
   }, [dispatch]);
 

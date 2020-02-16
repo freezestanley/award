@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { message, Modal } from 'antd';
+// import { message, Modal } from 'antd';
+import { Toast } from 'zarm';
 import router from 'umi/router';
 const { hostname } = window.location;
 
@@ -13,6 +14,27 @@ const service = axios.create({
 // request interceptor
 service.interceptors.request.use(
   config => {
+    if (config.url.indexOf('checkLogin') < 0 && hostname !== 'localhost') {
+      config.url = `/xman-operation-analysis${config.url}`;
+    }
+
+    const uid = window.sessionStorage.getItem('user') || '';
+    // 处理站点切换等参数
+    if (config.method === 'post') {
+      // const _site = typeof config.data === 'object' ? config.data : JSON.parse(config.data);
+      // // const _test = hostname !== 'localhost' ? {} : {}; // 发布生产记得删除
+      // config.data = {
+      //   ..._site,
+      //   hackuid: uid,
+      // };
+      config.url = config.url + '?hackuid=' + uid;
+    }
+
+    if (config.method === 'get') {
+      config.params.hackuid = uid;
+    }
+
+    console.log('====>>>>>>>config===>', config);
     return config;
   },
   error => {
@@ -40,11 +62,13 @@ service.interceptors.response.use(
     const msg = res.respMsg;
     const code = res.respCode;
 
+    // console.log('======>>>>.requerss==>', res);
     if (code != 0) {
-      message.error(msg);
+      // con;
+      Toast.show(msg);
     }
 
-    console.log('request-=====>>>>>', res);
+    // console.log('request-=====>>>>>', res);
     return res;
   },
   error => {

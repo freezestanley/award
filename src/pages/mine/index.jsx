@@ -63,7 +63,7 @@ function Mine({ userInfo = {}, dispatch }) {
         <img className="esc" onClick={handleESC} src={require('@/assets/icon/esc.svg')} alt="ESC" />
       </div>
       <div className="wallet">
-        <div className="w1" onClick={() => router.push('/cash')}>
+        <div className="w1" onClick={() => router.push(`/cash?balance=${userInfo.balance}`)}>
           <p className="amount">{toThousands(userInfo.balance)}</p>
           <p className="txt extractable">可提现佣金(元)</p>
         </div>

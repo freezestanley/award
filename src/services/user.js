@@ -67,7 +67,16 @@ export function promotionLink(params) {
 // 提现
 export function createWithdraw(params) {
   return request({
-    url: '/pay/createWithdraw',
+    url: '/api/pay/createWithdraw',
+    method: 'POST',
+    data: params,
+  });
+}
+
+// 充值
+export function createOrder(params) {
+  return request({
+    url: '/api/pay/createOrder',
     method: 'POST',
     data: params,
   });

@@ -8,7 +8,6 @@ import styles from './index.less';
 
 function Home({ dispatch, gameList = [] }) {
   const handleRecharge = data => {
-    console.log('===========>>>>data', data);
     router.push(`/${data.gameName}/recharge?gameId=${data.gameId}`);
   };
 
@@ -24,13 +23,12 @@ function Home({ dispatch, gameList = [] }) {
   return (
     <>
       <div className={styles.normal}>
-        {gameList.length &&
-          gameList.map((item, idx) => (
-            <div key={idx} className={styles.item}>
-              <GameInfo data={item} />
-              <button onClick={() => handleRecharge(item)}>充值</button>
-            </div>
-          ))}
+        {gameList.map((item, idx) => (
+          <div key={idx} className={styles.item}>
+            <GameInfo data={item} />
+            <button onClick={() => handleRecharge(item)}>充值</button>
+          </div>
+        ))}
       </div>
       <Navbar />
     </>
