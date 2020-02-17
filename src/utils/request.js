@@ -2,7 +2,7 @@ import axios from 'axios';
 // import { message, Modal } from 'antd';
 import { Toast } from 'zarm';
 // import router from 'umi/router';
-const { hostname } = window.location;
+// const { hostname } = window.location;
 
 // create an axios instance
 const service = axios.create({
@@ -14,9 +14,9 @@ const service = axios.create({
 // request interceptor
 service.interceptors.request.use(
   config => {
-    if (config.url.indexOf('checkLogin') < 0 && hostname !== 'localhost') {
-      config.url = `/xman-operation-analysis${config.url}`;
-    }
+    // if (config.url.indexOf('checkLogin') < 0 && hostname !== 'localhost') {
+    //   config.url = `/xman-operation-analysis${config.url}`;
+    // }
 
     const uid = window.sessionStorage.getItem('user') || '';
 
@@ -74,10 +74,10 @@ service.interceptors.response.use(
     const { url } = error.config;
     /* eslint-disable */
     // console.log('err' + error) // for debug
-    if (error.toString().indexOf('302') > -1 || url.indexOf('/api/checkLogin') > -1) {
-    } else {
-      message.error('服务器异常，请稍后再试' || error.message);
-    }
+    // if (error.toString().indexOf('302') > -1 || url.indexOf('/api/checkLogin') > -1) {
+    // } else {
+    //   message.error('服务器异常，请稍后再试' || error.message);
+    // }
     return Promise.reject(error);
   },
 );
