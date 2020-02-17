@@ -71,7 +71,8 @@ export default {
     '/api': {
       target: 'https://ants-backend-test.zhongan.io',
       changeOrigin: true,
-      pathRewrite: { '^/api': '/' },
+      secure: false,
+      pathRewrite: { '^/api': '' },
     },
   },
 };

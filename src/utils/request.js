@@ -6,9 +6,9 @@ import { Toast } from 'zarm';
 
 // create an axios instance
 const service = axios.create({
-  baseURL: '', // url = base url + request url
-  withCredentials: true, // send cookies when cross-domain requests
-  timeout: 30 * 1000, // request timeout
+  // baseURL: '', // url = base url + request url
+  // withCredentials: true, // send cookies when cross-domain requests
+  // timeout: 30 * 1000, // request timeout
 });
 
 // request interceptor
