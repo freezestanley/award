@@ -5,7 +5,7 @@ import FindID from './find_id';
 
 import styles from './index.less';
 
-export default function RechargeForm(props) {
+export default function RechargeForm({ list = [], className = '', sendValue, priceAmount=0 }) {
   const modalRef = useRef(null);
   const [state, setState] = useReducer((o, n) => ({ ...o, ...n }), {
     init: false,
@@ -30,7 +30,7 @@ export default function RechargeForm(props) {
     });
   };
   return (
-    <div className={cns(styles.form, props.className)}>
+    <div className={cns(styles.form, className)}>
       <h3>充值信息</h3>
       <Cell
         title="游戏账号"
@@ -44,7 +44,9 @@ export default function RechargeForm(props) {
           type="text"
           onBlur={getAccount}
           placeholder="请输入游戏账号"
-          onChange={e => setState({ account: e })}
+          onChange={e => {
+            sendValue(e, 'gameUsername');
+          }}
         />
       </Cell>
       {state.init || (!state.exist && <span className="id-error">该游戏无此账号，请重新输入</span>)}
@@ -52,19 +54,10 @@ export default function RechargeForm(props) {
         <Select
           // value={value}
           placeholder="请选择游戏区服"
-          dataSource={[
-            { label: 'xxx', value: 1 },
-            { label: 'as', value: 2 },
-            { label: 'df', value: 3 },
-            { label: 'fgg', value: 4 },
-          ]}
+          dataSource={list}
           onOk={selected => {
-            // console.log('Select onOk: ', selected);
-            // let val = selected.map(item => item.value);
-            // console.log('[40] form.jsx: ', val);
-            setState({
-              area: selected[0].value,
-            });
+            const [region = {}] = selected;
+            sendValue(region['value'], 'gameRegion');
           }}
         />
       </Cell>
@@ -72,12 +65,13 @@ export default function RechargeForm(props) {
         <Input
           type="text"
           placeholder="请输入充值金额"
-          // value={this.state.inputValue}
-          // onChange={this.handleInputChange}
+          onChange={e => {
+            sendValue(Number(e), 'topUpAmount');
+          }}
         />
       </Cell>
       <p className="game-currency">
-        到账<span>xx</span>
+        到账<span>{priceAmount}</span>
         <i>钻石</i>
       </p>
       <FindID ref={modalRef} url={require('@/assets/game/1.png')} />

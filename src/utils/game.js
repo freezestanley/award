@@ -1,13 +1,48 @@
 const warnIcon = require('@/assets/icon/warn.svg');
 
-export const gameList = [
-  { name: '混沌之刃', img: require('@/assets/game/1.png'), discount: 8.5 },
-  { name: '皇室战争', img: require('@/assets/game/2.png'), discount: 8.5 },
-  { name: '荒野乱斗', img: require('@/assets/game/3.png'), discount: 8.5 },
-  { name: '新仙剑情缘', img: require('@/assets/game/4.png'), discount: 8.8 },
-  { name: '崩坏3rd', img: require('@/assets/game/5.png'), discount: 9 },
-  { name: '阴阳师', img: require('@/assets/game/6.png'), discount: 7.8 },
-  { name: '明日之后', img: require('@/assets/game/7.png'), discount: 9.8 },
+export const gameList1 = [
+  {
+    gameName: '混沌之刃',
+    logoPicUrl: require('@/assets/game/1.png'),
+    discountRatePercent: 8.5,
+    gameId: 121,
+  },
+  {
+    gameName: '皇室战争',
+    logoPicUrl: require('@/assets/game/2.png'),
+    discountRatePercent: 8.5,
+    gameId: 1232,
+  },
+  {
+    gameName: '荒野乱斗',
+    logoPicUrl: require('@/assets/game/3.png'),
+    discountRatePercent: 8.5,
+    gameId: 1152,
+  },
+  {
+    gameName: '新仙剑情缘',
+    logoPicUrl: require('@/assets/game/4.png'),
+    discountRatePercent: 8.8,
+    gameId: 5412,
+  },
+  {
+    gameName: '崩坏3rd',
+    logoPicUrl: require('@/assets/game/5.png'),
+    discountRatePercent: 9,
+    gameId: 1219,
+  },
+  {
+    gameName: '阴阳师',
+    logoPicUrl: require('@/assets/game/6.png'),
+    discountRatePercent: 7.8,
+    gameId: 15432,
+  },
+  {
+    gameName: '明日之后',
+    logoPicUrl: require('@/assets/game/7.png'),
+    discountRatePercent: 9.8,
+    gameId: 132,
+  },
 ];
 
 export const cashStatus = {

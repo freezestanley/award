@@ -18,6 +18,7 @@ export default function Login() {
     loading: false,
     form: {
       phone: '',
+      // promoterUserId: '',
       verificationCode: '',
     },
   });
@@ -36,15 +37,17 @@ export default function Login() {
         Toast.show(rules[key]);
       }
     });
+
     if (!flag) {
       console.log('[29] signup.jsx: ', 'submit');
       service.login(state.form).then(res => {
-        // console.log('[33] index.jsx: ', res);
-        if (res.data.respCode === 0) {
-          window.sessionStorage.setItem('user', JSON.stringify(res.data.data));
+        const { content, respMsg = '' } = res;
+        if (content && content['uid']) {
+          Toast.show('登录成功');
+          window.sessionStorage.setItem('user', JSON.stringify(content['uid']));
           router.push('/');
         } else {
-          Toast.show(res.data.respMsg);
+          Toast.show(respMsg);
         }
       });
     }

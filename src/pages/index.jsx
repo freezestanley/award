@@ -1,15 +1,25 @@
+import React, { useEffect } from 'react';
 import GameInfo from '@/components/game/GameItem';
 import { connect } from 'dva';
 import Navbar from '@/components/Navbar';
-import { gameList } from '@/utils/game';
+// import { gameList } from '@/utils/game';
 import router from 'umi/router';
 import styles from './index.less';
 
-function Home(props) {
+function Home({ dispatch, gameList = [] }) {
   const handleRecharge = data => {
-    props.dispatch({ type: 'global/setGame', payload: data });
-    router.push(`/${data.name}/recharge`);
+    router.push(`/${data.gameName}/recharge?gameId=${data.gameId}`);
   };
+
+  useEffect(() => {
+    dispatch({
+      type: 'global/gameList',
+      payload: {
+        page: 1,
+        limit: 100,
+      },
+    });
+  }, [dispatch]);
   return (
     <>
       <div className={styles.normal}>
@@ -25,4 +35,7 @@ function Home(props) {
   );
 }
 
-export default connect(state => state.global)(Home);
+export default connect(state => {
+  // console.log('===>state==>', state);
+  return state.global;
+})(Home);

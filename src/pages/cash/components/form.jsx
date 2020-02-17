@@ -1,9 +1,10 @@
 import React, { useReducer } from 'react';
 import cns from 'classnames';
-import { Input, Cell } from 'zarm';
+import { Input, Cell, Message, Toast } from 'zarm';
 import Button from '@/components/Button';
-
+import { createWithdraw } from '@/services/user.js';
 import styles from './index.less';
+import router from 'umi/router';
 
 export default function CashForm(props) {
   const [state, setState] = useReducer((o, n) => ({ ...o, ...n }), {
@@ -11,7 +12,40 @@ export default function CashForm(props) {
     area: '',
     amount: 0,
     options: [],
+    withdrawAmount: '',
+    payAccount: '',
+    payAccount1: '',
   });
+
+  const handleChange = (e, tag) => {
+    setState({
+      ...state,
+      [tag]: e,
+    });
+  };
+  const handleClick = () => {
+    if (state.payAccount != state.payAccount1) {
+      Toast.show('您两次输入的账号不同，请重新输入');
+    }
+
+    let params = {
+      dedupCode: Math.random(),
+      payAccount: state.payAccount,
+      payChannel: '1',
+      withdrawAmount: state.withdrawAmount,
+    };
+
+    if (state.payAccount + '' && state.withdrawAmount + '') {
+      createWithdraw(params).then(res => {
+        if (res) {
+          const { respCode } = res;
+          if (respCode == 0) {
+            router.push('/cash/review');
+          }
+        }
+      });
+    }
+  };
   return (
     <div className={cns(styles.form, props.className)}>
       <h3>提现信息</h3>
@@ -19,17 +53,32 @@ export default function CashForm(props) {
         <Input
           type="text"
           placeholder="单次提现上限200元"
-          onChange={e => setState({ account: e })}
+          onChange={e => handleChange(e, 'withdrawAmount')}
         />
       </Cell>
       <Cell title="支付宝账号">
-        <Input type="text" placeholder="请输入收款的支付宝账号" />
+        <Input
+          onChange={e => handleChange(e, 'payAccount')}
+          type="text"
+          placeholder="请输入收款的支付宝账号"
+        />
       </Cell>
       <Cell title="确认账号">
-        <Input type="text" placeholder="请再次输入收款的支付宝账号" />
+        <Input
+          onChange={e => handleChange(e, 'payAccount1')}
+          type="text"
+          placeholder="请再次输入收款的支付宝账号"
+          onBlur={e => {
+            if (state.payAccount != e) {
+              Toast.show('您两次输入的账号不同，请重新输入');
+            }
+          }}
+        />
       </Cell>
 
-      <Button style={{ marginTop: 30 }}>提交</Button>
+      <Button onClick={e => handleClick()} style={{ marginTop: 30 }}>
+        提交
+      </Button>
     </div>
   );
 }

@@ -69,7 +69,7 @@ export default {
   ],
   proxy: {
     '/api': {
-      target: 'http://11455-ants-backend.test.za-tech.net',
+      target: 'https://ants-backend-test.zhongan.io',
       changeOrigin: true,
       pathRewrite: { '^/api': '/' },
     },

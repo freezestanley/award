@@ -1,36 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '@/components/Header';
-
+import { connect } from 'dva';
 import styles from './index.less';
 
-export default function MineInvite({
-  data = [
-    {
-      name: '39384149531',
-      date: '2020-02-13',
-    },
-    {
-      name: '93948301922',
-      date: '2020-02-10',
-    },
-    {
-      name: '49384923323',
-      date: '2020-02-09',
-    },
-  ],
-}) {
+function MineInvite({ myPromotions = [], dispatch }) {
+  const uid = sessionStorage.getItem('user') || '';
+  useEffect(() => {
+    dispatch({
+      type: 'user/getMyPromotions',
+      payload: {
+        hackuid: uid,
+        page: 1,
+        limit: 1000,
+      },
+    });
+  }, [dispatch, uid]);
+
   return (
     <>
       <Header title="我邀请的人" />
       <div style={{ padding: '60px 0 30px' }} className={styles.invite}>
-        {data.map(item => {
+        {myPromotions.map((item, key) => {
           return (
-            <div key={item.name} className="item">
+            <div key={key} className="item">
               <div>
-                <img src={require('@/assets/icon/default.png')} alt="avatar" />
-                <span>{item.name}</span>
+                <img src={item.targetUserAvatarUrl} alt={item.targetUserName} />
+                <span>{item.targetUserName}</span>
               </div>
-              <time>{item.date}</time>
+              <time>{item.promotionTimestamp}</time>
             </div>
           );
         })}
@@ -38,3 +35,8 @@ export default function MineInvite({
     </>
   );
 }
+
+export default connect(state => {
+  // console.log('===>state==>', state);
+  return state.user;
+})(MineInvite);

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Collapse } from 'zarm';
 // import { formatNumber } from '@/utils/tools';
 // import { cashStatus } from '@/utils/game';
 import Header from '@/components/Header';
-
+import { connect } from 'dva';
 import styles from './index.less';
 
 function InfoItem({ name, value }) {
@@ -39,43 +39,45 @@ const testData = {
   num: 10000,
 };
 
-export default function MineCommission({
-  data = [
-    {
-      account: '39384149531',
-      num: 124,
-      status: 2,
-      date: '2020-02-13',
-    },
-    {
-      account: '93948301922',
-      num: 1234,
-      status: 3,
-      date: '2020-02-10',
-    },
-    {
-      account: '49384923323',
-      num: 302,
-      status: 1,
-      date: '2020-02-09',
-    },
-  ],
-}) {
+function MineCommission({ myTopUps = [], dispatch }) {
+  const uid = sessionStorage.getItem('user') || '';
+
+  useEffect(() => {
+    dispatch({
+      type: 'user/getMyTopUps',
+      payload: {
+        hackuid: uid,
+        page: 1,
+        limit: 1000,
+      },
+    });
+  }, [dispatch, uid]);
   return (
     <>
       <Header title="我的充值" />
       <div style={{ padding: '60px 0 30px' }} className={styles.record}>
         <Collapse animated defaultActiveKey={'0'}>
-          {data.map((item, idx) => {
+          {myTopUps.map((item, idx) => {
             return (
-              <Collapse.Item key={idx} className="item" title={<GameInfo data={testData} />}>
+              <Collapse.Item
+                key={idx}
+                className="item"
+                title={
+                  <GameInfo
+                    data={{
+                      ...testData,
+                      time: item.time,
+                    }}
+                  />
+                }
+              >
                 <div className="order">
-                  <InfoItem name="订单号" value="xxxx" />
-                  <InfoItem name="游戏账号" value="xxxx" />
-                  <InfoItem name="所在区服" value="xxxx" />
-                  <InfoItem name="充值金额" value="xxxx" />
-                  <InfoItem name="实际付款" value="xxxx" />
-                  <InfoItem name="到账游戏币" value="xxxx" />
+                  <InfoItem name="订单号" value={item.orderId} />
+                  <InfoItem name="游戏账号" value={item.gameUsername} />
+                  <InfoItem name="所在区服" value={item.gameRegion} />
+                  <InfoItem name="充值金额" value={item.topUpAmount} />
+                  <InfoItem name="实际付款" value={item.priceAmount} />
+                  <InfoItem name="到账游戏币" value={item.coinAmount} />
                 </div>
               </Collapse.Item>
             );
@@ -85,3 +87,8 @@ export default function MineCommission({
     </>
   );
 }
+
+export default connect(state => {
+  console.log('===>state==>', state);
+  return state.user;
+})(MineCommission);

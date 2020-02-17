@@ -3,26 +3,28 @@ import router from 'umi/router';
 import copy from 'copy-to-clipboard';
 import { checkLogin } from '@/utils/tools';
 import styles from './index.less';
-
+import { promotionLink } from '@/services/user.js';
 const shareIcon = require('@/assets/icon/share.svg');
 
-export default function RechargeNavbar() {
+export default function RechargeNavbar({ priceAmount = 0, handleSubmit }) {
   const handleRecharge = () => {
-    checkLogin(() => {
-      router.push('/recharge/result');
-    });
+    handleSubmit();
+    // checkLogin(() => {
+    //   router.push('/recharge/result');
+    // });
   };
   const handleShare = () => {
-    // alert('Share');
-    // TODO: 接口返回分享链接
-    // 分享到微信，微博，QQ等
-    copy('这里给游戏充值最低3折，同样消费加倍快乐，打折传送门：http://xxx.com');
+    const uid = window.sessionStorage.getItem('user') || '';
+    promotionLink({ hackuid: uid, shareUrl: encodeURIComponent('/') }).then(res => {
+      console.log('分享链接===>', res);
+      // alert(gameId);
+    });
   };
   return (
     <div className={styles.navbar}>
       <div className="left">
         <p className="t1">
-          应付金额<span>xx元</span>
+          应付金额<span>{priceAmount}元</span>
         </p>
         <p className="t2">
           已省<span>xx元</span>
