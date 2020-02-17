@@ -9,7 +9,7 @@ import styles from './index.less';
 
 function Home({ dispatch, gameList = [], loading }) {
   const handleRecharge = data => {
-    router.push(`/${data.gameName}/recharge?gameId=${data.gameId}`);
+    router.push(`/recharge?gameId=${data.gameId}`);
   };
 
   useEffect(() => {

@@ -11,7 +11,7 @@ export default {
         // 登录
         { path: '/login', component: '../pages/login' },
         // 游戏充值
-        { path: '/:id/recharge', component: '../pages/recharge' },
+        { path: '/recharge', component: '../pages/recharge' },
         // 充值记录
         { path: '/recharge/record', component: '../pages/recharge/record' },
         // 充值结果

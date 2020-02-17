@@ -20,12 +20,14 @@ service.interceptors.request.use(
 
     const uid = window.sessionStorage.getItem('user') || '';
 
-    if (config.method === 'post') {
-      config.url = config.url + '?hackuid=' + uid;
-    }
+    if (process.env.NODE_ENV === 'development') {
+      if (config.method === 'post') {
+        config.url = config.url + '?hackuid=' + uid;
+      }
 
-    if (config.method === 'get') {
-      config.params.hackuid = uid;
+      if (config.method === 'get') {
+        config.params.hackuid = uid;
+      }
     }
 
     return config;

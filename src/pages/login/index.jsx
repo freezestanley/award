@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import { Input, Toast } from 'zarm';
 import * as service from '@/services/global';
 import router from 'umi/router';
+import { Query } from '@/utils/tools';
 import Header from '@/components/Header';
 import Button from '@/components/Button';
 import SendCode from './components/SendCode';
@@ -30,6 +31,8 @@ export default function Login() {
   //   router.push('/');
   // };
   const handleLogin = () => {
+    // const { gameId } = window.location.search;
+    const gameId = Query.get('gameId');
     let flag = false;
     Object.keys(state.form).forEach(key => {
       if (!state.form[key] && !flag) {
@@ -45,7 +48,7 @@ export default function Login() {
         if (content && content['uid']) {
           Toast.show('登录成功');
           window.sessionStorage.setItem('user', JSON.stringify(content['uid']));
-          router.push('/');
+          router.push(gameId ? `/recharge?gameId=${gameId}` : '/');
         } else {
           Toast.show(respMsg);
         }

@@ -7,11 +7,16 @@ import styles from './index.less';
 import { promotionLink } from '@/services/user';
 const shareIcon = require('@/assets/icon/share.svg');
 
-export default function RechargeNavbar({ priceAmount = 0, handleSubmit, topUpAmount }) {
+export default function RechargeNavbar({ gameId, priceAmount = 0, handleSubmit, topUpAmount }) {
   const handleRecharge = () => {
-    handleSubmit();
+    const uid = window.sessionStorage.getItem('user') || '';
+    if (uid) {
+      handleSubmit();
+    } else {
+      router.push(`/login?gameId=${gameId}`);
+    }
     // checkLogin(() => {
-    //   router.push('/recharge/result');
+    //   handleSubmit();
     // });
   };
   const handleShare = () => {

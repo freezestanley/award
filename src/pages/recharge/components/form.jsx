@@ -56,7 +56,7 @@ export default function RechargeForm({
           dataSource={list}
           onOk={selected => {
             const [region = {}] = selected;
-            sendValue(region['value'], 'gameRegion');
+            sendValue(region['label'], 'gameRegion');
             setExists(true);
           }}
         />

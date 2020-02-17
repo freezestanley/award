@@ -77,6 +77,7 @@ function MineCommission({ dispatch, user, global }) {
                   <InfoItem name="游戏账号" value={item.gameUsername} />
                   <InfoItem name="所在区服" value={item.gameRegion} />
                   <InfoItem name="充值金额" value={item.topUpAmount} />
+                  <InfoItem name="充值状态" value={item.status} />
                   <InfoItem name="实际付款" value={item.priceAmount} />
                   <InfoItem name="到账游戏币" value={item.coinAmount} />
                 </div>
