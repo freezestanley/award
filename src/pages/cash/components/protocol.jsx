@@ -7,7 +7,7 @@ export default function RechargeProtocol(props) {
     <div className={cns(styles.protocol, props.className)}>
       <h3>提现说明</h3>
       <p>
-        1. 单次提现金额最少1月，最多<span>200</span>元，次数不限
+        1. 单次提现金额最少<span>1</span>元，最多<span>200</span>元，次数不限
       </p>
       <p>
         2. 提现后<span>24小时内</span>完成审核，审核通过后直接放到支付宝账户

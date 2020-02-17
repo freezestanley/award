@@ -71,7 +71,7 @@ export default {
       const { list = [] } = res;
       yield put({
         type: 'setState',
-        payload: { myDistributions: list },
+        payload: { myDistributions: list, loading: false },
 
         // [
         //   {

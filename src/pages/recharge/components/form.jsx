@@ -1,4 +1,4 @@
-import React, { useRef, useReducer } from 'react';
+import React, { useRef } from 'react';
 import { Input, Cell, Select } from 'zarm';
 import cns from 'classnames';
 import FindID from './find_id';
@@ -29,7 +29,7 @@ export default function RechargeForm({
     }
   };
 
-  console.log('exists===>', exists);
+  // console.log('exists===>', exists);
   return (
     <div className={cns(styles.form, className)}>
       <h3>充值信息</h3>

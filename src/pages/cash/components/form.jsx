@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 import cns from 'classnames';
-import { Input, Cell, Message, Toast } from 'zarm';
+import { Input, Cell, Toast } from 'zarm';
 import Button from '@/components/Button';
 import { createWithdraw } from '@/services/user.js';
 import styles from './index.less';
@@ -10,7 +10,6 @@ export default function CashForm(props) {
   const [state, setState] = useReducer((o, n) => ({ ...o, ...n }), {
     account: '',
     area: '',
-    amount: 0,
     options: [],
     withdrawAmount: '',
     payAccount: '',
@@ -24,26 +23,32 @@ export default function CashForm(props) {
     });
   };
   const handleClick = () => {
-    if (state.payAccount != state.payAccount1) {
-      Toast.show('您两次输入的账号不同，请重新输入');
+    if (state.withdrawAmount < 1) {
+      return Toast.show('单次提现金额最少1元');
     }
+    if (!state.payAccount) {
+      return Toast.show('请输入收款的支付宝账号');
+    }
+    if (state.payAccount !== state.payAccount1) {
+      Toast.show('您两次输入的账号不同，请重新输入');
+    } else {
+      let params = {
+        dedupCode: Math.random(),
+        payAccount: state.payAccount,
+        payChannel: '1',
+        withdrawAmount: state.withdrawAmount,
+      };
 
-    let params = {
-      dedupCode: Math.random(),
-      payAccount: state.payAccount,
-      payChannel: '1',
-      withdrawAmount: state.withdrawAmount,
-    };
-
-    if (state.payAccount + '' && state.withdrawAmount + '') {
-      createWithdraw(params).then(res => {
-        if (res) {
-          const { respCode } = res;
-          if (respCode == 0) {
-            router.push('/cash/review');
+      if (state.payAccount + '' && state.withdrawAmount + '') {
+        createWithdraw(params).then(res => {
+          if (res) {
+            const { respCode } = res;
+            if (respCode === 0) {
+              router.push('/cash/review');
+            }
           }
-        }
-      });
+        });
+      }
     }
   };
   return (
@@ -69,7 +74,7 @@ export default function CashForm(props) {
           type="text"
           placeholder="请再次输入收款的支付宝账号"
           onBlur={e => {
-            if (state.payAccount != e) {
+            if (state.payAccount !== e) {
               Toast.show('您两次输入的账号不同，请重新输入');
             }
           }}
