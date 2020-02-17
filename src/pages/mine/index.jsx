@@ -4,7 +4,7 @@ import copy from 'copy-to-clipboard';
 import router from 'umi/router';
 import Button from '@/components/Button';
 import Navbar from '@/components/Navbar';
-import { getUserInfo, formatNumber, toThousands } from '@/utils/tools';
+import { getUserInfo, toThousands, checkLogin } from '@/utils/tools';
 import { connect } from 'dva';
 
 import styles from './index.less';
@@ -22,19 +22,16 @@ function Mine({ userInfo = {}, dispatch }) {
   const [state, setState] = useReducer((o, n) => ({ ...o, ...n }), {
     visible: false,
   });
-  console.log('[5] index.jsx: ', getUserInfo());
+  // console.log('[5] index.jsx: ', getUserInfo());
   const data = getUserInfo();
 
   useEffect(() => {
-    if (!data) {
-      router.push('/login');
-      return null;
-    } else {
+    checkLogin(() => {
       dispatch({
         type: 'user/getMyInfo',
         payload: {},
       });
-    }
+    });
   }, [data, dispatch]);
 
   const handleModal = () => {
@@ -49,13 +46,13 @@ function Mine({ userInfo = {}, dispatch }) {
     Toast.show('复制成功，请前往微信添加');
   };
 
-  // console.log();
-  console.log('===>state==>用户信息', userInfo);
+  // console.log('===>state==>用户信息', userInfo);
 
   return (
     <div className={styles.mine}>
       <div className="user">
-        <img src={userInfo.avatarUrl} alt="avatar" />
+        {/* <img src={userInfo.avatarUrl} alt="avatar" /> */}
+        <img src={require('@/assets/icon/default.png')} alt="avatar" />
         <div>
           <p className="name">{userInfo.userName}</p>
           <p className="phone">{userInfo.phoneMasked}</p>

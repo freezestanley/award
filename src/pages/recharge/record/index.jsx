@@ -18,15 +18,15 @@ function InfoItem({ name, value }) {
 function GameInfo({ data = {} }) {
   return (
     <div className={styles.gameinfo}>
-      <img src={data.img} alt="avatar" />
+      <img src={data.gameLogoUrl} alt="avatar" />
       <div className="txt">
         <div>
-          <span>{data.name}</span>
+          <span>{data.gameName}</span>
           <time>{data.time}</time>
         </div>
       </div>
       <span className="gb">
-        到账 <i>{data.num}钻石</i>
+        到账 <i>{data.coinAmount}钻石</i>
       </span>
     </div>
   );
@@ -39,14 +39,13 @@ const testData = {
   num: 10000,
 };
 
-function MineCommission({ myTopUps = [], dispatch }) {
-
-
+function MineCommission({ dispatch, user, global }) {
+  const { myTopUps = [] } = user;
+  // console.log('[44] index.jsx: ', global);
   useEffect(() => {
     dispatch({
       type: 'user/getMyTopUps',
       payload: {
-
         page: 1,
         limit: 1000,
       },
@@ -65,7 +64,9 @@ function MineCommission({ myTopUps = [], dispatch }) {
                 title={
                   <GameInfo
                     data={{
-                      ...testData,
+                      ...item,
+                      // ...testData,
+                      // coinAmount: item.coinAmount,
                       time: formatDate(item.time),
                     }}
                   />
@@ -88,7 +89,4 @@ function MineCommission({ myTopUps = [], dispatch }) {
   );
 }
 
-export default connect(state => {
-  console.log('===>state==>', state);
-  return state.user;
-})(MineCommission);
+export default connect(state => state)(MineCommission);

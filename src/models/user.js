@@ -60,7 +60,7 @@ export default {
       } = res;
       yield put({
         type: 'setState',
-        payload: { myInfo: content },
+        payload: { userInfo: content },
       });
       return res;
     },

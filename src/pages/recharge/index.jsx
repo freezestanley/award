@@ -90,7 +90,7 @@ function Recharge({ gameRegionsList = [], gameInfo, dispatch, location }) {
         <GameInfo className={styles.game_info} data={gameInfo} />
         <RechargeForm
           exists={exists}
-          coinAmount={(state.topUpAmount / GAME_RATIO) * coinRate}
+          coinAmount={Math.floor((state.topUpAmount / GAME_RATIO) * coinRate)}
           sendValue={sendValue}
           list={gameRegionsList}
           className={styles.form}

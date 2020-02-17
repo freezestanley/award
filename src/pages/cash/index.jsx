@@ -15,7 +15,7 @@ function Cash({ location }) {
       <Header title="提现" />
       <div style={{ padding: '60px 0' }}>
         <div className={styles.amount}>
-          <p className="ants-amount">{formatNumber(balance)}</p>
+          <p className="ants-amount">{formatNumber(Number(balance) || `0.00`)}</p>
           <p className="desc">当前佣金(元)</p>
         </div>
         <CashForm className={styles.form} />
