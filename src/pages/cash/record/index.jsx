@@ -2,11 +2,12 @@ import React, { useEffect } from 'react';
 import { formatNumber, formatDate } from '@/utils/tools';
 import { cashStatus } from '@/utils/game';
 import Header from '@/components/Header';
+import DataLoading from '@/components/status/DataLoading';
 import { connect } from 'dva';
 
 import styles from './index.less';
 
-function MineCommission({ myWithdraws = [], dispatch }) {
+function MineCommission({ myWithdraws = [], dispatch, loading }) {
   useEffect(() => {
     dispatch({
       type: 'user/getMyWithdraws',

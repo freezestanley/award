@@ -24,10 +24,10 @@ export default function RechargeNavbar({ priceAmount = 0, handleSubmit, topUpAmo
     <div className={styles.navbar}>
       <div className="left">
         <p className="t1">
-          应付金额<span>{priceAmount}元</span>
+          应付金额<span>{priceAmount.toFixed(2)}元</span>
         </p>
         <p className="t2">
-          已省<span>{topUpAmount-priceAmount}元</span>
+          已省<span>{(topUpAmount - priceAmount).toFixed(2)}元</span>
         </p>
         <img className="share" onClick={handleShare} src={shareIcon} alt="share" />
       </div>

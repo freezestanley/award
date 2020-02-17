@@ -11,32 +11,24 @@ export default function RechargeForm({
   sendValue,
   coinAmount = 0,
   exists = false,
+  setExists,
 }) {
   const modalRef = useRef(null);
   const [state, setState] = useReducer((o, n) => ({ ...o, ...n }), {
-    init: false,
-    exist: true,
-    account: '',
-    area: '',
-    amount: 0,
-    options: [],
+    // init: false,
+    // exist: true,
+    // account: '',
+    // area: '',
+    // amount: 0,
+    // options: [],
   });
   const hanldeFindAccount = () => {
     if (modalRef.current) {
       modalRef.current.show();
     }
   };
-  const getAccount = () => {
-    setState({
-      init: false,
-    });
-    // api
-    // setState({
-    //   exist: Math.random() > 0.5,
-    // });
-  };
 
-  // console.log('exists===>', exists);
+  console.log('exists===>', exists);
   return (
     <div className={cns(styles.form, className)}>
       <h3>充值信息</h3>
@@ -50,22 +42,22 @@ export default function RechargeForm({
       >
         <Input
           type="text"
-          onBlur={getAccount}
           placeholder="请输入游戏账号"
           onChange={e => {
             sendValue(e, 'gameUsername');
+            setExists(true);
           }}
         />
       </Cell>
       {exists ? null : <span className="id-error">该游戏无此账号，请重新输入</span>}
       <Cell title="所在区服">
         <Select
-          // value={value}
           placeholder="请选择游戏区服"
           dataSource={list}
           onOk={selected => {
             const [region = {}] = selected;
             sendValue(region['value'], 'gameRegion');
+            setExists(true);
           }}
         />
       </Cell>

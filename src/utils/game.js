@@ -55,3 +55,5 @@ export const cashStatus = {
     </span>
   ),
 };
+
+export const GAME_RATIO = 100;
