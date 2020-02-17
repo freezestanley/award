@@ -19,20 +19,13 @@ export default function Login() {
     loading: false,
     form: {
       phone: '',
-      // promoterUserId: '',
       verificationCode: '',
     },
   });
-  // const handleLogin = () => {
-  //   window.sessionStorage.setItem(
-  //     'user',
-  //     JSON.stringify({ phone: '1239349012', name: '盎司902ksjdss' }),
-  //   );
-  //   router.push('/');
-  // };
   const handleLogin = () => {
     // const { gameId } = window.location.search;
     const gameId = Query.get('gameId');
+    const pid = window.sessionStorage.getItem('promotorId') || '';
     let flag = false;
     Object.keys(state.form).forEach(key => {
       if (!state.form[key] && !flag) {
@@ -42,8 +35,8 @@ export default function Login() {
     });
 
     if (!flag) {
-      console.log('[29] signup.jsx: ', 'submit');
-      service.login(state.form).then(res => {
+      // console.log('[29] signup.jsx: ', 'submit');
+      service.login({ ...state.form, promoterUserId: pid }).then(res => {
         const { content, respMsg = '' } = res;
         if (content && content['uid']) {
           Toast.show('登录成功');

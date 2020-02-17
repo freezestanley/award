@@ -3,6 +3,8 @@ import { Collapse } from 'zarm';
 import { formatDate } from '@/utils/tools';
 // import { cashStatus } from '@/utils/game';
 import Header from '@/components/Header';
+import DataLoading from '@/components/status/DataLoading';
+import NoData from '@/components/status/NoData';
 import { connect } from 'dva';
 import styles from './index.less';
 
@@ -26,20 +28,24 @@ function GameInfo({ data = {} }) {
         </div>
       </div>
       <span className="gb">
-        到账 <i>{data.coinAmount}钻石</i>
+        到账{' '}
+        <i>
+          {data.coinAmount}
+          {data.coinUnit}
+        </i>
       </span>
     </div>
   );
 }
 
-const testData = {
-  img: require('@/assets/game/1.png'),
-  name: '混沌之刃',
-  time: '2020-02-10',
-  num: 10000,
-};
+// const testData = {
+//   img: require('@/assets/game/1.png'),
+//   name: '混沌之刃',
+//   time: '2020-02-10',
+//   num: 10000,
+// };
 
-function MineCommission({ dispatch, user, global }) {
+function MineCommission({ dispatch, user, global, ...rest }) {
   const { myTopUps = [] } = user;
   // console.log('[44] index.jsx: ', global);
   useEffect(() => {
@@ -51,40 +57,43 @@ function MineCommission({ dispatch, user, global }) {
       },
     });
   }, [dispatch]);
+  if (rest.loading.models.user) return <DataLoading />;
   return (
     <>
       <Header title="我的充值" />
       <div style={{ padding: '60px 0 30px' }} className={styles.record}>
-        <Collapse animated defaultActiveKey={'0'}>
-          {myTopUps.map((item, idx) => {
-            return (
-              <Collapse.Item
-                key={idx}
-                className="item"
-                title={
-                  <GameInfo
-                    data={{
-                      ...item,
-                      // ...testData,
-                      // coinAmount: item.coinAmount,
-                      time: formatDate(item.time),
-                    }}
-                  />
-                }
-              >
-                <div className="order">
-                  <InfoItem name="订单号" value={item.orderId} />
-                  <InfoItem name="游戏账号" value={item.gameUsername} />
-                  <InfoItem name="所在区服" value={item.gameRegion} />
-                  <InfoItem name="充值金额" value={item.topUpAmount} />
-                  <InfoItem name="充值状态" value={item.status} />
-                  <InfoItem name="实际付款" value={item.priceAmount} />
-                  <InfoItem name="到账游戏币" value={item.coinAmount} />
-                </div>
-              </Collapse.Item>
-            );
-          })}
-        </Collapse>
+        {myTopUps.length === 0 ? (
+          <NoData />
+        ) : (
+          <Collapse animated defaultActiveKey={'0'}>
+            {myTopUps.map((item, idx) => {
+              return (
+                <Collapse.Item
+                  key={idx}
+                  className="item"
+                  title={
+                    <GameInfo
+                      data={{
+                        ...item,
+                        time: formatDate(item.time),
+                      }}
+                    />
+                  }
+                >
+                  <div className="order">
+                    <InfoItem name="订单号" value={item.orderId} />
+                    <InfoItem name="游戏账号" value={item.gameUsername} />
+                    <InfoItem name="所在区服" value={item.gameRegion} />
+                    <InfoItem name="充值金额" value={`${item.topUpAmount}元`} />
+                    <InfoItem name="充值状态" value={item.status} />
+                    <InfoItem name="实际付款" value={`${item.priceAmount}元`} />
+                    <InfoItem name="到账游戏币" value={`${item.coinAmount}${item.coinUnit}`} />
+                  </div>
+                </Collapse.Item>
+              );
+            })}
+          </Collapse>
+        )}
       </div>
     </>
   );

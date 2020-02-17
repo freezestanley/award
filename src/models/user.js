@@ -8,7 +8,7 @@ export default {
     myPromotions: [],
     userInfo: {},
     myDistributions: [],
-    loading: false,
+    loading: true,
   },
   reducers: {
     setState(state, { payload }) {
@@ -42,7 +42,7 @@ export default {
       const { list = [] } = res;
       yield put({
         type: 'setState',
-        payload: { myPromotions: list },
+        payload: { myPromotions: list, loading: false },
       });
       return res;
     },

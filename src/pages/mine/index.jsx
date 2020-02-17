@@ -91,12 +91,12 @@ function Mine({ userInfo = {}, dispatch }) {
       <Modal
         className={styles.modal}
         visible={state.visible}
-        title="请添加客服微信"
+        title="联系客服"
         closable
         maskClosable
         onCancel={() => setState({ visible: false })}
       >
-        <p style={{ marginBottom: 30 }}>ants001</p>
+        <p style={{ marginBottom: 30 }}>请添加客服微信：ants001</p>
         <Button onClick={handleCopy}>复制微信号</Button>
       </Modal>
       <Navbar active="mine" />

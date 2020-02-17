@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import router from 'umi/router';
-import copy from 'copy-to-clipboard';
+import * as copy from 'copy-to-clipboard';
 import { Toast } from 'zarm';
-import { checkLogin } from '@/utils/tools';
 import styles from './index.less';
 import { promotionLink } from '@/services/user';
 const shareIcon = require('@/assets/icon/share.svg');
 
 export default function RechargeNavbar({ gameId, priceAmount = 0, handleSubmit, topUpAmount }) {
+  const [text, setText] = useState('');
   const handleRecharge = () => {
     const uid = window.sessionStorage.getItem('user') || '';
     if (uid) {
@@ -15,18 +15,20 @@ export default function RechargeNavbar({ gameId, priceAmount = 0, handleSubmit, 
     } else {
       router.push(`/login?gameId=${gameId}`);
     }
-    // checkLogin(() => {
-    //   handleSubmit();
-    // });
   };
+
+  useEffect(() => {
+    (async () => {
+      const uid = window.sessionStorage.getItem('user') || '';
+      const res = await promotionLink({ hackuid: uid, shareUrl: window.location.origin });
+      const txt = `这里给游戏充值最低三折，同样消费加倍快乐，打折传送门: ${res.content.promotionLink}`;
+      setText(txt);
+    })();
+  }, []);
+
   const handleShare = () => {
-    const uid = window.sessionStorage.getItem('user') || '';
-    promotionLink({ hackuid: uid, shareUrl: window.location.origin }).then(res => {
-      // console.log('分享链接===>', res);
-      // alert(gameId);
-      copy(`这里给游戏充值最低三折，同样消费加倍快乐，打折传送门: ${res.content.promotionLink}`);
-      Toast.show(`分享内容已经复制到剪贴板，去分享`);
-    });
+    copy(text);
+    Toast.show(`分享内容已经复制到剪贴板，去分享`);
   };
   return (
     <div className={styles.navbar}>

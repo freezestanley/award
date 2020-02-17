@@ -3,6 +3,7 @@ import { formatNumber, formatDate } from '@/utils/tools';
 import { cashStatus } from '@/utils/game';
 import Header from '@/components/Header';
 import DataLoading from '@/components/status/DataLoading';
+import NoData from '@/components/status/NoData';
 import { connect } from 'dva';
 
 import styles from './index.less';
@@ -18,10 +19,13 @@ function MineCommission({ myWithdraws = [], dispatch, loading }) {
     });
   }, [dispatch]);
 
+  if (loading) return <DataLoading />;
+
   return (
     <>
       <Header title="提现记录" />
       <div style={{ padding: '60px 0 30px' }} className={styles.commission}>
+        {myWithdraws.length === 0 && <NoData />}
         {myWithdraws.map((item, key) => {
           return (
             <div key={key} className="item">

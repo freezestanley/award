@@ -12,16 +12,17 @@ export default function RechargeForm({
   coinAmount = 0,
   exists = false,
   setExists,
+  coinUnit = '',
 }) {
   const modalRef = useRef(null);
-  const [state, setState] = useReducer((o, n) => ({ ...o, ...n }), {
-    // init: false,
-    // exist: true,
-    // account: '',
-    // area: '',
-    // amount: 0,
-    // options: [],
-  });
+  // const [state, setState] = useReducer((o, n) => ({ ...o, ...n }), {
+  //   // init: false,
+  //   // exist: true,
+  //   // account: '',
+  //   // area: '',
+  //   // amount: 0,
+  //   // options: [],
+  // });
   const hanldeFindAccount = () => {
     if (modalRef.current) {
       modalRef.current.show();
@@ -72,7 +73,7 @@ export default function RechargeForm({
       </Cell>
       <p className="game-currency">
         到账<span>{coinAmount}</span>
-        <i>钻石</i>
+        <i>{coinUnit}</i>
       </p>
       <FindID ref={modalRef} url={require('@/assets/game/1.png')} />
     </div>

@@ -15,7 +15,7 @@ function Recharge({ gameRegionsList = [], gameInfo, dispatch, location }) {
   // const game = props.game;
   // console.log('=====>>>.router', location);
   const { gameId = '' } = location.query;
-  const { discountRatePercent = 1, coinRate = 1 } = gameInfo;
+  const { discountRatePercent = 1, coinRate = 1, coinUnit } = gameInfo;
   const [state, setState] = useState({
     priceAmount: 0,
     gameUsername: '',
@@ -96,6 +96,7 @@ function Recharge({ gameRegionsList = [], gameInfo, dispatch, location }) {
           className={styles.form}
           location={location}
           setExists={setExists}
+          coinUnit={coinUnit}
         />
         <RechargeProtocol />
       </div>

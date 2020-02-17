@@ -9,23 +9,15 @@ import DataLoading from '@/components/status/DataLoading';
 import FailIcon from '@/assets/icon/fail.svg';
 import styles from './index.less';
 
-export default function Result({ data = '100钻石' }) {
+export default function Result() {
   const [isOk, setOk] = useState(false);
   const [delay, setDelay] = useState(1500);
   const [loading, setLoading] = useState(true);
   const [amountCoin, setAmountCoin] = useState(0);
   const [count, setCount] = useState(0);
-  // const {
-  //   out_trade_no = '',
-  //   total_amount = 1,
-  //   trade_no = '',
-  //   subject = '',
-  // } = window.location.query;
   const oid = Query.get('out_trade_no');
-  console.log('[22] index.jsx: ', oid);
+  // console.log('[22] index.jsx: ', oid);
   const [txt, setTxt] = useState('订单确认中，请等待...');
-
-  // console.log('[11] index.js: ', out_trade_no);
 
   useInterval(
     () => {
@@ -35,7 +27,6 @@ export default function Result({ data = '100钻石' }) {
         setTxt('订单确认超时，请联系客服');
       }
       orderInfo({ orderId: oid }).then(res => {
-        console.log('[36] index.jsx: ', res);
         if (res.respCode === 0) {
           setOk(true);
           setLoading(false);

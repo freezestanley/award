@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import GameInfo from '@/components/game/GameItem';
 import { connect } from 'dva';
 import Navbar from '@/components/Navbar';
+import { Query } from '@/utils/tools';
 import DataLoading from '@/components/status/DataLoading';
 // import { gameList } from '@/utils/game';
 import router from 'umi/router';
@@ -13,6 +14,9 @@ function Home({ dispatch, gameList = [], loading }) {
   };
 
   useEffect(() => {
+    const pid = Query.get('promotorId');
+    if (pid) window.sessionStorage.setItem('promotorId', pid);
+    // promotorId
     dispatch({
       type: 'global/gameList',
       payload: {
