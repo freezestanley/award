@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Toast } from 'zarm';
 import { connect } from 'dva';
 import GameInfo from '@/components/game/GameItem';
 import Header from '@/components/Header';
@@ -38,7 +39,8 @@ function Recharge({ gameRegionsList = [], gameInfo, dispatch, location }) {
         gameId: gameId,
       },
     });
-  }, [dispatch, gameId]);
+    window.sessionStorage.setItem('coinUnit', coinUnit);
+  }, [coinUnit, dispatch, gameId]);
 
   const sendValue = (value, tag) => {
     setState({
@@ -56,6 +58,18 @@ function Recharge({ gameRegionsList = [], gameInfo, dispatch, location }) {
       gameId: gameId,
       coinAmount: (state.topUpAmount / GAME_RATIO) * coinRate,
     };
+
+    console.log('[62] index.jsx: ', gameId);
+
+    if (!state.gameUsername) {
+      return Toast.show('请输入游戏账号');
+    }
+    if (!state.gameRegion) {
+      return Toast.show('请选择游戏区服');
+    }
+    if (!state.topUpAmount) {
+      return Toast.show('请输入充值金额');
+    }
 
     accountInRegion({
       gameId: gameId,

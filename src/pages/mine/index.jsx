@@ -43,6 +43,7 @@ function Mine({ userInfo = {}, dispatch }) {
   };
   const handleCopy = () => {
     copy('ants001');
+    setState({ visible: false });
     Toast.show('复制成功，请前往微信添加');
   };
 

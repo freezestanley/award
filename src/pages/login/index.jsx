@@ -35,6 +35,9 @@ export default function Login() {
     });
 
     if (!flag) {
+      if (!/^1\d{10}$/.test(state.form.phone)) {
+        return Toast.show('手机号码格式错误');
+      }
       // console.log('[29] signup.jsx: ', 'submit');
       service.login({ ...state.form, promoterUserId: pid }).then(res => {
         const { content, respMsg = '' } = res;

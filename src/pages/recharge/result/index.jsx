@@ -27,6 +27,7 @@ export default function Result() {
         setTxt('订单确认超时，请联系客服');
       }
       orderInfo({ orderId: oid }).then(res => {
+        if (!res) return;
         if (res.respCode === 0) {
           setOk(true);
           setLoading(false);
@@ -37,13 +38,19 @@ export default function Result() {
     !isOk ? delay : null,
   );
   if (loading) return <DataLoading content={txt} />;
+  const unit = window.sessionStorage.getItem('coinUnit');
   return (
     <div className={styles.result}>
       <Header title="充值结果" onClose={() => router.push('/')} />
       <div className="icon" style={{ paddingTop: 90 }}>
         <img src={isOk ? OkIcon : FailIcon} alt="result" />
         <p>{isOk ? '充值成功' : '充值失败'}</p>
-        {isOk && <p>{amountCoin}钻石</p>}
+        {isOk && (
+          <p>
+            {amountCoin}
+            {unit}
+          </p>
+        )}
       </div>
       {isOk ? (
         <Button onClick={() => router.push('/recharge/record')}>查看充值</Button>

@@ -34,7 +34,7 @@ function MineCommission({ myDistributions = [], dispatch, loading }) {
                 </span>
               </div>
               <div className="order">
-                <span>订单号 {item.platformAmount}</span>
+                <span>订单号 {item.goodName}</span>
                 <time>{item.time}</time>
               </div>
             </div>

@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
+import { connect } from 'dva';
 import { formatNumber, formatDate } from '@/utils/tools';
-import { cashStatus } from '@/utils/game';
 import Header from '@/components/Header';
 import DataLoading from '@/components/status/DataLoading';
 import NoData from '@/components/status/NoData';
-import { connect } from 'dva';
 
 import styles from './index.less';
 
@@ -34,8 +33,8 @@ function MineCommission({ myWithdraws = [], dispatch, loading }) {
                 <i>{formatNumber(item.withdrawAmount)}元</i>
               </div>
               <div className="order">
-                <time>{formatDate(item.time)}</time>
-                <span>{cashStatus[item.status]}</span>
+                <time>{formatDate(item.time, 'YYYY-MM-DD HH:mm:ss')}</time>
+                <span>{item.status}</span>
               </div>
             </div>
           );
@@ -45,7 +44,4 @@ function MineCommission({ myWithdraws = [], dispatch, loading }) {
   );
 }
 
-export default connect(state => {
-  // console.log('===>state==>', state);
-  return state.user;
-})(MineCommission);
+export default connect(state => state.user)(MineCommission);

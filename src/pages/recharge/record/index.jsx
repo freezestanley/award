@@ -75,7 +75,7 @@ function MineCommission({ dispatch, user, global, ...rest }) {
                     <GameInfo
                       data={{
                         ...item,
-                        time: formatDate(item.time),
+                        time: formatDate(item.time, 'YYYY-MM-DD HH:mm:ss'),
                       }}
                     />
                   }

@@ -6,7 +6,7 @@ import OkIcon from '@/assets/icon/ok.svg';
 import styles from './index.less';
 import router from 'umi/router';
 
-export default function Result({ isOk = true, data = '100钻石' }) {
+export default function Result({ isOk = true }) {
   return (
     <div className={styles.result}>
       <Header title="提现审核" />
@@ -15,7 +15,7 @@ export default function Result({ isOk = true, data = '100钻石' }) {
         <p>提现申请提交成功</p>
         <p>请等待审核</p>
       </div>
-      <Button onClick = {()=>router.push("/cash/record")}>查看提现明细</Button>
+      <Button onClick={() => router.push('/cash/record')}>查看提现明细</Button>
     </div>
   );
 }
