@@ -1,30 +1,22 @@
 import React from 'react';
 import router from 'umi/router';
+import copy from 'copy-to-clipboard';
 import { checkLogin } from '@/utils/tools';
 import styles from './index.less';
 import { promotionLink } from '@/services/user.js';
 const shareIcon = require('@/assets/icon/share.svg');
 
-export default function RechargeNavbar({  topUpAmount=0,priceAmount =0, handleSubmit }) {
+export default function RechargeNavbar({ priceAmount = 0, handleSubmit, topUpAmount }) {
   const handleRecharge = () => {
-    handleSubmit()
+    handleSubmit();
     // checkLogin(() => {
     //   router.push('/recharge/result');
     // });
   };
   const handleShare = () => {
-
-    promotionLink({ shareUrl: encodeURIComponent(window.location.origin)}).then(res => {
-
-      console.log("分享链接===>", res)
-      const {respCode,content} =res
-
-      if(respCode===0){
-        if(content["promotionLink"]){
-
-        }
-      }
-
+    const uid = window.sessionStorage.getItem('user') || '';
+    promotionLink({ hackuid: uid, shareUrl: encodeURIComponent('/') }).then(res => {
+      console.log('分享链接===>', res);
       // alert(gameId);
     });
   };
