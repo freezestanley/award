@@ -1,64 +1,53 @@
-import { myTopUps, myWithdraws, myPromotions, myInfo, myDistributions } from '../services/user.js';
+import * as services from '../services/user.js';
 
 export default {
   namespace: 'user',
   state: {
-    game: null,
     myTopUps: [],
     myWithdraws: [],
     myPromotions: [],
     userInfo: {},
     myDistributions: [],
+    loading: false,
   },
   reducers: {
-    setMyTopUps(state, { payload }) {
-      return { ...state, myTopUps: payload };
-    },
-    setMyWithdraws(state, { payload }) {
-      return { ...state, myWithdraws: payload };
-    },
-    setMyPromotions(state, { payload }) {
-      return { ...state, myPromotions: payload };
-    },
-    setMyInfo(state, { payload }) {
-      return { ...state, userInfo: payload };
-    },
-    setMyDistributions(state, { payload }) {
-      return { ...state, myDistributions: payload };
+    setState(state, { payload }) {
+      return { ...state, ...payload };
     },
   },
   effects: {
+    // 充值记录
     *getMyTopUps({ payload }, { put, call }) {
-      const res = yield call(myTopUps, payload);
+      const res = yield call(services.myTopUps, payload);
       const { list = [] } = res;
 
       yield put({
-        type: 'setMyTopUps',
-        payload: list,
+        type: 'setState',
+        payload: { myTopUps: list, loading: false },
       });
       return res;
     },
-    // 获取体现记录
+    // 获取提现记录
     *getMyWithdraws({ payload }, { put, call }) {
-      const res = yield call(myWithdraws, payload);
+      const res = yield call(services.myWithdraws, payload);
       const { list = [] } = res;
       yield put({
-        type: 'setMyWithdraws',
-        payload: list,
+        type: 'setState',
+        payload: { myWithdraws: list, loading: false },
       });
       return res;
     },
     *getMyPromotions({ payload }, { put, call }) {
-      const res = yield call(myPromotions, payload);
+      const res = yield call(services.myPromotions, payload);
       const { list = [] } = res;
       yield put({
-        type: 'setMyPromotions',
-        payload: list,
+        type: 'setState',
+        payload: { myPromotions: list },
       });
       return res;
     },
     *getMyInfo({ payload }, { put, call }) {
-      const res = yield call(myInfo, payload);
+      const res = yield call(services.myInfo, payload);
       const {
         content = {
           avatarUrl: '',
@@ -70,19 +59,19 @@ export default {
         },
       } = res;
       yield put({
-        type: 'setMyInfo',
-        payload: content,
+        type: 'setState',
+        payload: { myInfo: content },
       });
       return res;
     },
 
     *getMyDistributions({ payload }, { put, call }) {
-      const res = yield call(myDistributions, payload);
+      const res = yield call(services.myDistributions, payload);
 
       const { list = [] } = res;
       yield put({
-        type: 'setMyDistributions',
-        payload: list,
+        type: 'setState',
+        payload: { myDistributions: list },
 
         // [
         //   {

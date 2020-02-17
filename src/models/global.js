@@ -1,14 +1,13 @@
-import { gameList, gameInfo, gameRegions } from '../services/global.js';
-import { gameList1 } from '@/utils/game';
+import { gameList, gameInfo, gameRegions } from '@/services/global.js';
+// import { gameList1 } from '@/utils/game';
 
 function mapRegionsList(ary = []) {
-  return ary.map(item => {
-    return {
-      label: item.regionName,
-      value: item.regionId,
-    };
-  });
+  return ary.map(item => ({
+    label: item.regionName,
+    value: item.regionId,
+  }));
 }
+
 export default {
   namespace: 'global',
   state: {
@@ -16,36 +15,26 @@ export default {
     gameList: [],
     gameInfo: {},
     gameRegionsList: [],
+    loading: true,
   },
   reducers: {
     setState(state, { payload }) {
       return { ...state, ...payload };
-    },
-    setGameList(state, { payload }) {
-      return { ...state, gameList: payload };
-    },
-    setGameInfo(state, { payload }) {
-      return { ...state, gameInfo: payload };
-    },
-    setGameRegionsList(state, { payload }) {
-      return { ...state, gameRegionsList: payload };
     },
   },
   effects: {
     *setGame({ payload }, { put }) {
       yield put({
         type: 'setState',
-        payload: {
-          game: payload,
-        },
+        payload: { game: payload },
       });
     },
     *gameList({ payload }, { put, call }) {
       const res = yield call(gameList, payload);
       const { list = [] } = res;
       yield put({
-        type: 'setGameList',
-        payload: list,
+        type: 'setState',
+        payload: { gameList: list, loading: false },
       });
       return res;
     },
@@ -53,8 +42,8 @@ export default {
       const res = yield call(gameInfo, payload);
       const { content } = res;
       yield put({
-        type: 'setGameInfo',
-        payload: content,
+        type: 'setState',
+        payload: { gameInfo: content },
       });
       return res;
     },
@@ -62,8 +51,8 @@ export default {
       const res = yield call(gameRegions, payload);
       const { list } = res;
       yield put({
-        type: 'setGameRegionsList',
-        payload: mapRegionsList(list),
+        type: 'setState',
+        payload: { gameRegionsList: mapRegionsList(list) },
       });
       return res;
     },

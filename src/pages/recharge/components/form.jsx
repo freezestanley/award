@@ -31,12 +31,12 @@ export default function RechargeForm({
       init: false,
     });
     // api
-    setState({
-      exist: Math.random() > 0.5,
-    });
+    // setState({
+    //   exist: Math.random() > 0.5,
+    // });
   };
 
-  console.log('exists===>', exists);
+  // console.log('exists===>', exists);
   return (
     <div className={cns(styles.form, className)}>
       <h3>充值信息</h3>

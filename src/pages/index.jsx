@@ -2,11 +2,12 @@ import React, { useEffect } from 'react';
 import GameInfo from '@/components/game/GameItem';
 import { connect } from 'dva';
 import Navbar from '@/components/Navbar';
+import DataLoading from '@/components/status/DataLoading';
 // import { gameList } from '@/utils/game';
 import router from 'umi/router';
 import styles from './index.less';
 
-function Home({ dispatch, gameList = [] }) {
+function Home({ dispatch, gameList = [], loading }) {
   const handleRecharge = data => {
     router.push(`/${data.gameName}/recharge?gameId=${data.gameId}`);
   };
@@ -20,6 +21,7 @@ function Home({ dispatch, gameList = [] }) {
       },
     });
   }, [dispatch]);
+  if (loading) return <DataLoading />;
   return (
     <>
       <div className={styles.normal}>

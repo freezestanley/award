@@ -1,7 +1,7 @@
 import axios from 'axios';
 // import { message, Modal } from 'antd';
 import { Toast } from 'zarm';
-import router from 'umi/router';
+// import router from 'umi/router';
 const { hostname } = window.location;
 
 // create an axios instance
