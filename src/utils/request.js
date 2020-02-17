@@ -18,7 +18,7 @@ service.interceptors.request.use(
     //   config.url = `/xman-operation-analysis${config.url}`;
     // }
 
-    const uid = window.sessionStorage.getItem('user') || '';
+    const uid = window.sessionStorage.getItem('user') || '60';
 
     if (process.env.NODE_ENV === 'development') {
       if (config.method === 'post') {

@@ -46,4 +46,13 @@ export function gameRegions(params) {
   });
 }
 
+// 获取订单详情
+export function orderInfo(params) {
+  return request({
+    url: '/api/public/orderInfo',
+    method: 'GET',
+    params,
+  });
+}
+
 // GET /public/gameRegions
