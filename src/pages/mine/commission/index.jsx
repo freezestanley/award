@@ -28,13 +28,13 @@ function MineCommission({ myDistributions = [], dispatch, loading }) {
           return (
             <div key={key} className="item">
               <div className="info">
-                <span>{item.sourceUserName}</span>
+                <span>{item.targetUserName}</span>
                 <span>
-                  佣金<i>{toThousands(item.platformAmount)}元</i>
+                  佣金<i>{toThousands(item.awardAmount)}元</i>
                 </span>
               </div>
               <div className="order">
-                <span>订单号 {item.goodName}</span>
+                <span>订单号 {item.orderId}</span>
                 <time>{formatDate(item.time, 'YYYY-MM-DD HH:mm:ss')}</time>
               </div>
             </div>

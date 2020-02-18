@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Collapse } from 'zarm';
 import numeral from 'numeral';
 import { toThousands, formatDate } from '@/utils/tools';
-// import { cashStatus } from '@/utils/game';
+// import { orderStatus } from '@/utils/game';
 import Header from '@/components/Header';
 import DataLoading from '@/components/status/DataLoading';
 import NoData from '@/components/status/NoData';
@@ -29,7 +29,8 @@ function GameInfo({ data = {} }) {
         </div>
       </div>
       <span className="gb">
-        到账{' '}
+        <span>{data.status}</span>
+        <br />
         <i>
           {data.coinAmount}
           {data.coinUnit}
@@ -89,7 +90,7 @@ function MineCommission({ dispatch, user, global, ...rest }) {
                     <InfoItem name="充值状态" value={item.status} />
                     <InfoItem name="实际付款" value={`${toThousands(item.priceAmount)}元`} />
                     <InfoItem
-                      name="到账游戏币"
+                      name="游戏币"
                       value={`${numeral(item.coinAmount).format('0,0')}${item.coinUnit}`}
                     />
                   </div>

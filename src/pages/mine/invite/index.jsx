@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Header from '@/components/Header';
 import DataLoading from '@/components/status/DataLoading';
 import NoData from '@/components/status/NoData';
+import { formatDate } from '@/utils/tools';
 import { connect } from 'dva';
 import styles from './index.less';
 
@@ -31,7 +32,7 @@ function MineInvite({ myPromotions = [], dispatch, loading }) {
                 <img src={item.targetUserAvatarUrl} alt={item.targetUserName} />
                 <span>{item.targetUserName}</span>
               </div>
-              <time>{item.promotionTimestamp}</time>
+              <time>{formatDate(item.promotionTimestamp, 'YYYY-MM-DD HH:mm:ss')}</time>
             </div>
           );
         })}

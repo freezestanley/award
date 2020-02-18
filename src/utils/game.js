@@ -45,6 +45,7 @@ export const gameList1 = [
   },
 ];
 
+// 提现状态
 export const cashStatus = {
   '1': '审核中',
   '2': '发放中',
@@ -55,6 +56,14 @@ export const cashStatus = {
       审核不通过(原因请联系客服)
     </span>
   ),
+};
+
+// 订单状态
+export const orderStatus = {
+  '1': '创建未支付',
+  '2': '已支付未到账',
+  '3': '已支付已到账',
+  '4': '超时关闭',
 };
 
 export const GAME_RATIO = 100;

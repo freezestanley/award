@@ -21,7 +21,7 @@ export default function RechargeNavbar({ gameId, priceAmount = 0, handleSubmit, 
 
   useEffect(() => {
     (async () => {
-      const res = await promotionLink({ hackuid: uid, shareUrl: window.location.origin });
+      const res = await promotionLink({ hackuid: uid, shareUrl: `${window.location.origin}/` });
       const txt = `这里给游戏充值最低三折，同样消费加倍快乐，打折传送门: ${res.content.promotionLink}`;
       setText(txt);
     })();
