@@ -1,6 +1,7 @@
 import React, { useReducer, useEffect } from 'react';
 import { Cell, Modal, Toast } from 'zarm';
 import copy from 'copy-to-clipboard';
+import cookie from '@/utils/cookie';
 import router from 'umi/router';
 import Button from '@/components/Button';
 import Navbar from '@/components/Navbar';
@@ -39,6 +40,7 @@ function Mine({ userInfo = {}, dispatch }) {
   };
   const handleESC = () => {
     window.sessionStorage.clear();
+    cookie.remove('user');
     router.push('/');
   };
   const handleCopy = () => {
