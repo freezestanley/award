@@ -29,7 +29,7 @@ function GameInfo({ data = {} }) {
         </div>
       </div>
       <span className="gb">
-        <span>{data.status}</span>
+        <span style={{ float: 'right' }}>{data.status}</span>
         <br />
         <i>
           {data.coinAmount}
