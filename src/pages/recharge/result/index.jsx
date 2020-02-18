@@ -37,7 +37,13 @@ export default function Result() {
     },
     !isOk ? delay : null,
   );
-  if (loading) return <DataLoading content={txt} />;
+  if (loading)
+    return (
+      <div className={styles.result}>
+        <Header title="充值结果" onClose={() => router.push('/')} />
+        <DataLoading content={txt} />
+      </div>
+    );
   const unit = window.sessionStorage.getItem('coinUnit');
   return (
     <div className={styles.result}>

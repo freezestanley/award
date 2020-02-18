@@ -47,8 +47,9 @@ export const gameList1 = [
 
 export const cashStatus = {
   '1': '审核中',
-  '2': '已发放',
-  '3': (
+  '2': '发放中',
+  '3': '已发放',
+  '4': (
     <span>
       <img width={12} style={{ verticalAlign: -2, marginRight: 4 }} src={warnIcon} alt="warn" />
       审核不通过(原因请联系客服)

@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'dva';
-import { formatNumber, formatDate } from '@/utils/tools';
+import { toThousands, formatDate } from '@/utils/tools';
 import Header from '@/components/Header';
 import DataLoading from '@/components/status/DataLoading';
 import NoData from '@/components/status/NoData';
+import { cashStatus } from '@/utils/game';
 
 import styles from './index.less';
 
@@ -30,11 +31,12 @@ function MineCommission({ myWithdraws = [], dispatch, loading }) {
             <div key={key} className="item">
               <div className="info">
                 <span>支付宝账号 {item.payAccount}</span>
-                <i>{formatNumber(item.withdrawAmount)}元</i>
+                <i>{toThousands(item.withdrawAmount)}元</i>
               </div>
               <div className="order">
                 <time>{formatDate(item.time, 'YYYY-MM-DD HH:mm:ss')}</time>
-                <span>{item.status}</span>
+                {/* <span>{item.status}</span> */}
+                <span>{cashStatus[item.status]}</span>
               </div>
             </div>
           );

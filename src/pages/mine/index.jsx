@@ -9,11 +9,11 @@ import { connect } from 'dva';
 
 import styles from './index.less';
 
-function MenuTitle({ img, name }) {
+function MenuTitle({ img, name, style }) {
   return (
     <span>
       <img style={{ verticalAlign: '-4px', marginRight: 8 }} src={img} alt="icon" />
-      <span>{name}</span>
+      <span style={style}>{name}</span>
     </span>
   );
 }
@@ -48,6 +48,7 @@ function Mine({ userInfo = {}, dispatch }) {
   };
 
   // console.log('===>state==>用户信息', userInfo);
+  if (!userInfo) return null;
 
   return (
     <div className={styles.mine}>
@@ -61,7 +62,13 @@ function Mine({ userInfo = {}, dispatch }) {
         <img className="esc" onClick={handleESC} src={require('@/assets/icon/esc.svg')} alt="ESC" />
       </div>
       <div className="wallet">
-        <div className="w1" onClick={() => router.push(`/cash?balance=${userInfo.balance}`)}>
+        <div
+          className="w1"
+          onClick={() => {
+            router.push('/cash');
+            window.sessionStorage.setItem('balance', userInfo.balance);
+          }}
+        >
           <p className="amount">{toThousands(userInfo.balance)}</p>
           <p className="txt extractable">可提现佣金(元)</p>
         </div>
@@ -92,12 +99,18 @@ function Mine({ userInfo = {}, dispatch }) {
       <Modal
         className={styles.modal}
         visible={state.visible}
-        title="联系客服"
+        title={
+          <MenuTitle
+            name="联系客服"
+            style={{ fontWeight: 'bold' }}
+            img={require('@/assets/icon/wx.svg')}
+          />
+        }
         closable
         maskClosable
         onCancel={() => setState({ visible: false })}
       >
-        <p style={{ marginBottom: 30 }}>请添加客服微信：ants001</p>
+        <p style={{ margin: '10px 0 50px' }}>请添加客服微信：ants001</p>
         <Button onClick={handleCopy}>复制微信号</Button>
       </Modal>
       <Navbar active="mine" />

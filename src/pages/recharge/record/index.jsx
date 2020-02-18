@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Collapse } from 'zarm';
-import { formatDate } from '@/utils/tools';
+import numeral from 'numeral';
+import { toThousands, formatDate } from '@/utils/tools';
 // import { cashStatus } from '@/utils/game';
 import Header from '@/components/Header';
 import DataLoading from '@/components/status/DataLoading';
@@ -84,10 +85,13 @@ function MineCommission({ dispatch, user, global, ...rest }) {
                     <InfoItem name="订单号" value={item.orderId} />
                     <InfoItem name="游戏账号" value={item.gameUsername} />
                     <InfoItem name="所在区服" value={item.gameRegion} />
-                    <InfoItem name="充值金额" value={`${item.topUpAmount}元`} />
+                    <InfoItem name="充值金额" value={`${toThousands(item.topUpAmount)}元`} />
                     <InfoItem name="充值状态" value={item.status} />
-                    <InfoItem name="实际付款" value={`${item.priceAmount}元`} />
-                    <InfoItem name="到账游戏币" value={`${item.coinAmount}${item.coinUnit}`} />
+                    <InfoItem name="实际付款" value={`${toThousands(item.priceAmount)}元`} />
+                    <InfoItem
+                      name="到账游戏币"
+                      value={`${numeral(item.coinAmount).format('0,0')}${item.coinUnit}`}
+                    />
                   </div>
                 </Collapse.Item>
               );

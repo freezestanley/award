@@ -1,9 +1,11 @@
 import React from 'react';
 import { Icon } from 'zarm';
+import router from 'umi/router';
 import styles from './index.less';
 
-export default ({ children, title, href, onBack, onClose }) => {
+export default ({ children, title, href, to, onBack, onClose }) => {
   const handleGoBack = () => {
+    if (to) return router.push(to);
     onBack && onBack();
     if (!href) window.history.back();
   };

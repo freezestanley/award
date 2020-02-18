@@ -1,9 +1,11 @@
 import router from 'umi/router';
 import moment from 'moment';
 import numeral from 'numeral';
+import cookie from './cookie';
 
 export const checkLogin = cb => {
-  if (!!window.sessionStorage.getItem('user')) {
+  // if (!!window.sessionStorage.getItem('user')) {
+  if (!!cookie.get('user')) {
     cb();
   } else {
     router.push('/login');
@@ -11,7 +13,8 @@ export const checkLogin = cb => {
 };
 
 export const getUserInfo = () => {
-  const data = window.sessionStorage.getItem('user');
+  // const data = window.sessionStorage.getItem('user');
+  const data = cookie.get('user');
   if (data) {
     return JSON.parse(data);
   }

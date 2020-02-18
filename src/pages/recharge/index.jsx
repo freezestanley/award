@@ -59,7 +59,7 @@ function Recharge({ gameRegionsList = [], gameInfo, dispatch, location }) {
       coinAmount: (state.topUpAmount / GAME_RATIO) * coinRate,
     };
 
-    console.log('[62] index.jsx: ', gameId);
+    // console.log('[62] index.jsx: ', gameId);
 
     if (!state.gameUsername) {
       return Toast.show('请输入游戏账号');
@@ -99,7 +99,7 @@ function Recharge({ gameRegionsList = [], gameInfo, dispatch, location }) {
 
   return (
     <>
-      <Header title="充值" />
+      <Header title="充值" to="/" />
       <div style={{ padding: '60px 0' }}>
         <GameInfo className={styles.game_info} data={gameInfo} />
         <RechargeForm

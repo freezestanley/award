@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
-import { Input, Cell, Select } from 'zarm';
+import numeral from 'numeral';
 import cns from 'classnames';
+import { Input, Cell, Select } from 'zarm';
 import FindID from './find_id';
 
 import styles from './index.less';
@@ -72,7 +73,7 @@ export default function RechargeForm({
         />
       </Cell>
       <p className="game-currency">
-        到账<span>{coinAmount}</span>
+        到账<span>{numeral(coinAmount).format('0,0')}</span>
         <i>{coinUnit}</i>
       </p>
       <FindID ref={modalRef} url={require('@/assets/game/1.png')} />

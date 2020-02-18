@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { formatNumber } from '@/utils/tools';
+import { toThousands, formatDate } from '@/utils/tools';
 import Header from '@/components/Header';
 import NoData from '@/components/status/NoData';
 import DataLoading from '@/components/status/DataLoading';
@@ -30,12 +30,12 @@ function MineCommission({ myDistributions = [], dispatch, loading }) {
               <div className="info">
                 <span>{item.sourceUserName}</span>
                 <span>
-                  佣金<i>{formatNumber(item.platformAmount)}元</i>
+                  佣金<i>{toThousands(item.platformAmount)}元</i>
                 </span>
               </div>
               <div className="order">
                 <span>订单号 {item.goodName}</span>
-                <time>{item.time}</time>
+                <time>{formatDate(item.time, 'YYYY-MM-DD HH:mm:ss')}</time>
               </div>
             </div>
           );

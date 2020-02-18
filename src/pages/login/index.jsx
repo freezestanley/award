@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react';
 import { Input, Toast } from 'zarm';
 import * as service from '@/services/global';
+import cookie from '@/utils/cookie';
 import router from 'umi/router';
 import { Query } from '@/utils/tools';
 import Header from '@/components/Header';
@@ -43,7 +44,8 @@ export default function Login() {
         const { content, respMsg = '' } = res;
         if (content && content['uid']) {
           Toast.show('登录成功');
-          window.sessionStorage.setItem('user', JSON.stringify(content['uid']));
+          cookie.set('user', content['uid']);
+          // window.sessionStorage.setItem('user', JSON.stringify(content['uid']));
           router.push(gameId ? `/recharge?gameId=${gameId}` : '/');
         } else {
           Toast.show(respMsg);

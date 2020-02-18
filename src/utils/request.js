@@ -1,6 +1,7 @@
 import axios from 'axios';
 // import { message, Modal } from 'antd';
 import { Toast } from 'zarm';
+import cookie from '@/utils/cookie';
 // import router from 'umi/router';
 // const { hostname } = window.location;
 
@@ -17,8 +18,8 @@ service.interceptors.request.use(
     // if (config.url.indexOf('checkLogin') < 0 && hostname !== 'localhost') {
     //   config.url = `/xman-operation-analysis${config.url}`;
     // }
-
-    const uid = window.sessionStorage.getItem('user') || '60';
+    // const uid = window.sessionStorage.getItem('user') || '60';
+    const uid = cookie.get('user') || '60';
 
     if (process.env.NODE_ENV === 'development') {
       if (config.method === 'post') {
@@ -58,7 +59,7 @@ service.interceptors.response.use(
     const code = res.respCode;
 
     // console.log('======>>>>.requerss==>', res);
-    if (code != 0) {
+    if (code !== 0) {
       // con;
       Toast.show(msg);
     }
@@ -67,6 +68,10 @@ service.interceptors.response.use(
     return res;
   },
   error => {
+    console.log('[70] request.js: ', error.message);
+    if (error.message.indexOf('500')) {
+      Toast.show('服务器异常，请稍后再试' || error.message);
+    }
     const { host, hash } = location;
 
     if (host.indexOf('localhost') > -1) {

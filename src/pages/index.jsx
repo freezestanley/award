@@ -4,6 +4,7 @@ import { connect } from 'dva';
 import Navbar from '@/components/Navbar';
 import { Query } from '@/utils/tools';
 import DataLoading from '@/components/status/DataLoading';
+import NoData from '@/components/status/NoData';
 // import { gameList } from '@/utils/game';
 import router from 'umi/router';
 import styles from './index.less';
@@ -29,6 +30,7 @@ function Home({ dispatch, gameList = [], loading }) {
   return (
     <>
       <div className={styles.normal}>
+        {gameList.length === 0 && <NoData />}
         {gameList.map((item, idx) => (
           <div key={idx} className={styles.item}>
             <GameInfo data={item} />

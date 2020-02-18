@@ -23,6 +23,9 @@ export default function CashForm(props) {
     });
   };
   const handleClick = () => {
+    if (state.withdrawAmount > props.balance) {
+      return Toast.show('提现金额超过当前佣金，请重新输入');
+    }
     if (state.withdrawAmount < 1) {
       return Toast.show('单次提现金额最少1元');
     }
