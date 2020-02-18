@@ -40,19 +40,19 @@ self.__precacheManifest = [
     "url": "/p__cash__review.async.js"
   },
   {
-    "revision": "bfccde860e60b6db6f42",
+    "revision": "276e8bd688b38ae96a60",
     "url": "/p__index.chunk.css"
   },
   {
-    "revision": "bfccde860e60b6db6f42",
+    "revision": "276e8bd688b38ae96a60",
     "url": "/p__index.async.js"
   },
   {
-    "revision": "0952df0536f6d91c4016",
+    "revision": "a0fd6c7531c167764e6d",
     "url": "/p__login.chunk.css"
   },
   {
-    "revision": "0952df0536f6d91c4016",
+    "revision": "a0fd6c7531c167764e6d",
     "url": "/p__login.async.js"
   },
   {
@@ -80,11 +80,11 @@ self.__precacheManifest = [
     "url": "/p__mine__invite.async.js"
   },
   {
-    "revision": "a515ae125b2bc92ac8ac",
+    "revision": "2f11cd785a9cd0c9bca3",
     "url": "/p__recharge.chunk.css"
   },
   {
-    "revision": "a515ae125b2bc92ac8ac",
+    "revision": "2f11cd785a9cd0c9bca3",
     "url": "/p__recharge.async.js"
   },
   {
@@ -144,12 +144,12 @@ self.__precacheManifest = [
     "url": "/index.html"
   },
   {
-    "revision": "ec2c01423c80d74465f63c3da5fe389b",
-    "url": "/icons/144.png"
-  },
-  {
     "revision": "4a93a04c8af0922475875657d511efa2",
     "url": "/icons/192.png"
+  },
+  {
+    "revision": "ec2c01423c80d74465f63c3da5fe389b",
+    "url": "/icons/144.png"
   },
   {
     "revision": "02f6a5307a950c19ae9c7b3740c14d1c",
@@ -160,10 +160,6 @@ self.__precacheManifest = [
     "url": "/icons/256.png"
   },
   {
-    "revision": "0efa5a654f225a5a603396a7f7aa8518",
-    "url": "/icons/android-chrome-152x152.png"
-  },
-  {
     "revision": "191074b6f2222c2440b0bb3a0c642364",
     "url": "/icons/512.png"
   },
@@ -172,28 +168,32 @@ self.__precacheManifest = [
     "url": "/icons/android-chrome-192x192.png"
   },
   {
-    "revision": "d7e488ade6dbf67eef4668ddd15c5b1d",
-    "url": "/icons/apple-touch-icon-152x152.png"
+    "revision": "7f791a77d6f2e2a30b570c2aa31fb7fa",
+    "url": "/icons/apple-touch-icon-120x120.png"
   },
   {
     "revision": "f3b51acf7ce636366ba888475144b429",
     "url": "/icons/android-chrome-512x512.png"
   },
   {
-    "revision": "7f791a77d6f2e2a30b570c2aa31fb7fa",
-    "url": "/icons/apple-touch-icon-120x120.png"
+    "revision": "d7e488ade6dbf67eef4668ddd15c5b1d",
+    "url": "/icons/apple-touch-icon-152x152.png"
   },
   {
     "revision": "719cb777b3c5dd6f5f2288e538c98df1",
     "url": "/icons/apple-touch-icon-180x180.png"
   },
   {
-    "revision": "bbedf478fa6adc4b1c8faa146a262bd2",
-    "url": "/icons/apple-touch-icon-76x76.png"
+    "revision": "0efa5a654f225a5a603396a7f7aa8518",
+    "url": "/icons/android-chrome-152x152.png"
   },
   {
     "revision": "98e177e60162bc26af57a5fdd65ab69e",
     "url": "/icons/apple-touch-icon-60x60.png"
+  },
+  {
+    "revision": "bbedf478fa6adc4b1c8faa146a262bd2",
+    "url": "/icons/apple-touch-icon-76x76.png"
   },
   {
     "revision": "47cb723696508f2c5b8e5f704a31220f",
@@ -216,12 +216,12 @@ self.__precacheManifest = [
     "url": "/icons/mstile-150x150.png"
   },
   {
-    "revision": "f0c9c85d8ddca52aca8b00270ab49a89",
-    "url": "/manifest.json"
-  },
-  {
     "revision": "f22d501a35a87d9f21701cb031f6ea17",
     "url": "/icons/safari-pinned-tab.svg"
+  },
+  {
+    "revision": "f0c9c85d8ddca52aca8b00270ab49a89",
+    "url": "/manifest.json"
   },
   {
     "revision": "9ef055bcf0c4b1f0ac5663173730b010",

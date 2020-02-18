@@ -6,15 +6,9 @@ export default function RechargeProtocol(props) {
   return (
     <div className={cns(styles.protocol, props.className)}>
       <h3>充值说明</h3>
-      <p>
-        1. 将自动充值专用平台币，请在游戏使用专用平台币支付、<span>专用平台币有效期为永久</span>
-      </p>
-      <p>
-        2. 充值单比<span>可分多次</span>消费
-      </p>
-      <p>
-        3. 充值多笔<span>可累计1次</span>使用
-      </p>
+      <p>1. 游戏账号和该账号所在的区服都必须填写正确</p>
+      <p>2. 付款成功后将自动充进游戏</p>
+      <p>3. 有任何疑问请联系客服</p>
     </div>
   );
 }

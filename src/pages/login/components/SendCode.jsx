@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import cns from 'classnames';
 import { Button } from 'zarm';
 
-export default ({ className, onClick, duration = 30 }) => {
+export default ({ className, onSend, duration = 30 }) => {
   const [count, setCount] = useState(duration);
   const [delay] = useState(1000);
   const [isRunning, setIsRunning] = useState(false);
@@ -24,8 +24,13 @@ export default ({ className, onClick, duration = 30 }) => {
   );
 
   const handleRun = () => {
-    setIsRunning(true);
-    setCount(duration);
+    onSend &&
+      onSend().then(isOk => {
+        if (isOk) {
+          setIsRunning(true);
+          setCount(duration);
+        }
+      });
   };
 
   return (

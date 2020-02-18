@@ -56,6 +56,13 @@ export default function Login() {
   const handleChange = (val, key) => {
     setState({ form: { ...state.form, [key]: val } });
   };
+  const handleSend = async () => {
+    if (!/^1\d{10}$/.test(state.form.phone)) {
+      Toast.show('手机号码格式错误');
+      return false;
+    }
+    return true;
+  };
   return (
     <>
       <Header title="手机号登录" />
@@ -71,7 +78,7 @@ export default function Login() {
             placeholder="请输入验证码"
             onChange={e => handleChange(e, 'verificationCode')}
           />
-          <SendCode />
+          <SendCode onSend={handleSend} />
         </div>
       </div>
       <Button onClick={handleLogin}>登录</Button>

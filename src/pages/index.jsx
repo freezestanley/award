@@ -3,21 +3,27 @@ import GameInfo from '@/components/game/GameItem';
 import { connect } from 'dva';
 import Navbar from '@/components/Navbar';
 import { Query } from '@/utils/tools';
+import cookie from '@/utils/cookie';
 import DataLoading from '@/components/status/DataLoading';
 import NoData from '@/components/status/NoData';
-// import { gameList } from '@/utils/game';
 import router from 'umi/router';
 import styles from './index.less';
 
 function Home({ dispatch, gameList = [], loading }) {
+  const promotorId = Query.get('promotorId');
+  const uid = cookie.get('user');
+
   const handleRecharge = data => {
-    router.push(`/recharge?gameId=${data.gameId}`);
+    if (uid) {
+      router.push(`/recharge?gameId=${data.gameId}`);
+    } else {
+      router.push(`/login?promotorId=${promotorId}`);
+    }
   };
 
   useEffect(() => {
     const pid = Query.get('promotorId');
     if (pid) window.sessionStorage.setItem('promotorId', pid);
-    // promotorId
     dispatch({
       type: 'global/gameList',
       payload: {
@@ -43,7 +49,4 @@ function Home({ dispatch, gameList = [], loading }) {
   );
 }
 
-export default connect(state => {
-  // console.log('===>state==>', state);
-  return state.global;
-})(Home);
+export default connect(state => state.global)(Home);
