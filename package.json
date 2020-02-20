@@ -38,7 +38,7 @@
   "lint-staged": {
     "*.{js,jsx}": [
       "eslint --fix",
-      "git add"
+      "git add -f"
     ]
   },
   "engines": {
