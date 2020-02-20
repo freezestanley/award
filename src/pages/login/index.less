@@ -1,51 +1,47 @@
-.login {
-  :global {
-    .za-input {
-      // background: #fff;
-      padding-left: 30px;
-      position: relative;
-      margin-bottom: 0.1rem;
-      height: 40px;
-      border-bottom: solid 1px rgba(255, 255, 255, 0.1);
-      input {
-        height: 40px;
-        color: var(--t3);
-      }
-      &::before {
-        position: absolute;
-        display: inline-block;
-        content: '';
-        width: 30px;
-        height: 30px;
-        left: 0;
-      }
-      &.phone {
-        &::before {
-          background: url('./phone.svg') no-repeat;
-          background-size: 15px;
-          margin-top: 8px;
-          margin-left: 3px;
-        }
-      }
-      &.code {
-        padding-right: 90px;
-        &::before {
-          background: url('./code.svg') no-repeat;
-          background-size: 20px;
-          margin-top: 8px;
-        }
-      }
+.login{
+    margin: 0 20px;
+    padding-top:20px;
+    .login_title{
+        font-size: 24px;
+        margin:24px 0 12px;
+
     }
-    .code-control {
-      position: relative;
-      .send-code {
-        position: absolute;
-        top: 0;
-        right: 0;
-        background: transparent;
-        border: none;
-        color: var(--green);
-      }
+    .login_title1{
+        font-size: 16px;
+        margin-bottom: 40px;
     }
-  }
+    .login_input,.login_code{
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        line-height: 25px;
+    }
+    .login_box{
+        margin-bottom: 40px;
+    }
+    .login_code{
+        margin-bottom: 0px;
+        width: calc(100% - 110px);
+    }
+    .login_resend{
+        float: right;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        width: 100px;
+        padding: 10px;
+        font-size: 14px;
+        line-height: 25px;
+        font-size: 12px;
+        text-align: center;
+    }
+    .login_send{
+        border-radius: 5px;
+        font-size:16px;
+        color:#fff;
+        background:#000;
+        text-align: center;
+        padding:13px 0;
+    }
 }

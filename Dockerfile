@@ -1,4 +1,4 @@
-FROM base-registry.zhonganinfo.com/env/node-ngx:11.10.1
+FROM node-ngx:11.10.1
 
 ARG DEPLOY_ENV
 

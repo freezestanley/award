@@ -1,0 +1,62 @@
+.award{
+    background: radial-gradient(circle, #651114 0%, #000 65%);
+    padding:3vh 20px 0;
+    & > .award_content{
+        background: url('./images/ruby.png') no-repeat;
+        background-size: cover;
+        text-align: center;
+        background-size: 80%;
+        text-align: center;
+        background-position: center top;
+        .award_tips{
+            color: #fff;
+            font-size: 14px;
+            margin: 3vh 0 1.5vh;
+        }
+        .award_tips1{
+            background: rgba(151, 27, 31, 0.5);
+            color:#D3D8E1;
+            border-radius: 100px;
+            font-size: 10px;
+            line-height: 18px;
+            display: inline-block;
+            padding: 2px 7px;
+            margin-top:2vh;
+            &:before{
+                content: " ";
+                display: block;
+                background: url('./images/gt.png') no-repeat;
+                background-size: 100%;
+                width: 15px;
+                height: 15px;
+                float: left;
+                margin-right: 5px;
+            }
+        }
+        
+        .award_ruby{
+            background: url('./images/award.png') no-repeat;
+            background-size: 100% 100%;
+            background-size: 100% 100%;
+            display: block;
+            width: 182px;
+            height: 165px;
+            margin: 0 auto;
+        }
+        
+        
+        .award_num{
+            margin-top: 10px;
+            & > span{
+                color:rgba(255,255,255,0.8);
+                font-size: 16px;
+            }
+        }
+        .award_org{
+            font-size: 12px;
+            color:#fff;
+            text-align: left;
+            margin-bottom: 1vh;
+        }
+    }
+}

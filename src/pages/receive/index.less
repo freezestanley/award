@@ -1,0 +1,53 @@
+.output {
+  // height: 100vh;
+  background: #000;
+  min-height: 100vh;
+  .title {
+    color: #fff;
+    line-height: 3.5vh;
+    font-size: 16px;
+    margin-bottom: 2vh;
+  }
+  .shareqrcode {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+  }
+  .qrcode {
+    display: block;
+    width: 100px;
+    height: 100px;
+    background: #fff;
+    border: 10px solid #fff;
+    margin: 10px auto;
+  }
+  display: flex;
+  flex-direction: column;
+  .output_content {
+    flex: 1;
+    .eth_money {
+      color: #fff;
+      text-align: center;
+      line-height: 22px;
+      word-wrap: break-word;
+      word-break: break-all;
+      margin: 6vh 20px 0;
+      font-size: 15px;
+      & > div:nth-child(2) {
+        font-size: 13px;
+      }
+    }
+    .eth_address {
+      color: #fff;
+      text-align: center;
+      line-height: 22px;
+      word-wrap: break-word;
+      word-break: break-all;
+      font-size: 12px;
+      margin: 15px 20px;
+      & > a {
+        text-decoration: underline;
+      }
+    }
+  }
+}

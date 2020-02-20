@@ -1,0 +1,151 @@
+.protocol {
+  line-height: 0.2rem;
+  h3 {
+    font-size: 0.16rem;
+  }
+  p {
+    color: var(--t1);
+    font-size: 0.12rem;
+  }
+  :global {
+    span {
+      color: var(--green);
+    }
+  }
+}
+
+.form {
+  :global {
+    h3 {
+      font-size: 0.16rem;
+    }
+    .find {
+      color: var(--green);
+      font-size: 12px;
+    }
+    .id-error {
+      font-size: 12px;
+      margin-left: 100px;
+      color: var(--red);
+    }
+    .game-currency {
+      font-size: 14px;
+      text-align: right;
+      span {
+        color: var(--green);
+      }
+      i {
+        font-style: normal;
+      }
+    }
+    .za-cell {
+      background: transparent;
+      &::after {
+        left: 0;
+        border-top: none;
+        border-bottom: solid 1px rgba(255, 255, 255, 0.1);
+      }
+      .za-cell__inner {
+        padding: 0;
+      }
+      .za-cell__title {
+        color: var(--t3);
+      }
+      .za-select {
+        background: transparent;
+        .za-select__input::after {
+          transform: rotate(-45deg);
+          top: calc(var(--collapse-padding) + 4px);
+        }
+      }
+      .za-select--placeholder .za-select__input {
+        color: var(--t2);
+      }
+    }
+  }
+}
+
+
+.navbar {
+  position: fixed;
+  bottom: 0;
+  height: 50px;
+  background: linear-gradient(#1B263A, #2E3D58);
+  width: 100%;
+  left: 0;
+  display: flex;
+  align-items: center;
+  // border-top: 1px solid #1B263A;
+  >div {
+    flex: 1;
+    text-align: center;
+  }
+  :global {
+    .left, .right {
+      span {
+        position: relative;
+        z-index: 1;
+      }
+      &::after {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 50%;
+        height: 50px;
+        display: block;
+        content: '';
+        background-size: 100%;
+        z-index: 0;
+      }
+    }
+    .left {
+      position: relative;
+      text-align: left;
+      color: var(--t1);
+      font-size: 12px;
+      padding-left: 0.16rem;
+      p {
+        margin: 0;
+        span {
+          margin-left: 5px;
+        }
+      }
+      .t1 {
+        span {
+          color: #fff;
+          font-size: 18px;
+        }
+      }
+      .t2 {
+        // margin-left: 25px;
+        span {
+          color: var(--green);
+          // font-size: 14px;
+        }
+      }
+      .share {
+        position: absolute;
+        right: 20px;
+        top: 7px;
+      }
+    }
+    .right {
+      &::after {
+        background: var(--btn-bg);
+      }
+    }
+  }
+}
+
+.find_id {
+  :global {
+    .za-modal__header {
+      padding-top: 0;
+    }
+    .za-modal__header__close {
+      top: 3px;
+      right: 3px;
+    }
+    // .za-modal__body {}
+  }
+}
