@@ -1,6 +1,6 @@
 import axios from 'axios';
 import cookie from '@/utils/cookie';
-const base = process.env.apiUrl === 'prod' ? '' : '/api';
+const base = process.env.apiUrl === 'prod' ? 'http://aliyun.eagle711.win:8082' : '/api';
 export function getPerson(params) {
   return axios({
     url: `${base}/total_user`,

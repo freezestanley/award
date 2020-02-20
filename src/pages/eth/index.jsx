@@ -6,45 +6,43 @@ import * as Service from '@/services';
 import Blackbtn from '../components/blackbtn';
 import { connect } from 'dva';
 
-const Change = (props) => {
-	const [ ethAddress, setEthAddress ] = useState();
-	const [ distype, setDistype ] = useState(true);
-	const clickhandle = (ethAddress) => {
-		console.log('---------------------');
-		Service.token_address(ethAddress).then((res) => {
-			if (res.data.code === 0) {
-				router.push('/payment');
-			}
-		});
-		// router.push('/payment');
-	};
-	const changhandle = (e) => {
-		let va = e.target.value.trim();
-		let t = /^[a-zA-Z0-9]+$/.test(va);
-		console.log(t);
-		setDistype(t && va.length > 30 ? false : true);
-		setEthAddress(va);
-	};
-	return (
-		<div className={styled['change']}>
-			<Close />
-			<div className={styled['login_title']}>转出纪念徽章</div>
-			<div className={styled['login_title1']}>请填写你的ETH钱包地址</div>
-			<textarea
-				type="text"
-				placeholder="输入转出地址"
-				maxLength="200"
-				className={styled['enter_eth']}
-				onChange={(e) => changhandle(e)}
-			/>
+const Change = props => {
+  const [ethAddress, setEthAddress] = useState();
+  const [distype, setDistype] = useState(true);
+  const clickhandle = () => {
+    console.log('---------------------');
+    Service.token_address(ethAddress).then(res => {
+      if (res.data.code === 0) {
+        router.push('/payment');
+      }
+    });
+  };
+  const changhandle = e => {
+    let va = e.target.value.trim();
+    let t = /^[a-zA-Z0-9]+$/.test(va);
+    setDistype(t && va.length > 30 ? false : true);
+    setEthAddress(va);
+  };
+  return (
+    <div className={styled['change']}>
+      <Close />
+      <div className={styled['login_title']}>转出纪念徽章</div>
+      <div className={styled['login_title1']}>请填写你的ETH钱包地址</div>
+      <textarea
+        type="text"
+        placeholder="输入转出地址"
+        maxLength="200"
+        className={styled['enter_eth']}
+        onChange={e => changhandle(e)}
+      />
 
-			{/* <div 
+      {/* <div 
           className={styled['confirm_out']} 
           onClick={clickhandle}
         >确认转出</div> */}
-			{console.log(props)}
-			<Blackbtn txt="确认转出" clickhandle={clickhandle} disabled={distype} />
-		</div>
-	);
+      {console.log(props)}
+      <Blackbtn txt="确认转出" clickhandle={clickhandle} disabled={distype} />
+    </div>
+  );
 };
-export default connect((state) => state)(Change);
+export default connect(state => state)(Change);
