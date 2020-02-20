@@ -19,8 +19,8 @@ const Change = props => {
   };
   const changhandle = e => {
     let va = e.target.value.trim();
-    let t = /^[a-zA-Z0-9]+$/.test(va);
-    setDistype(t && va.length > 30 ? false : true);
+    let t = /^[a-fA-F0-9]{40}$/.test(va);
+    setDistype(t ? false : true);
     setEthAddress(va);
   };
   return (
@@ -40,7 +40,7 @@ const Change = props => {
           className={styled['confirm_out']} 
           onClick={clickhandle}
         >确认转出</div> */}
-      {console.log(props)}
+
       <Blackbtn txt="确认转出" clickhandle={clickhandle} disabled={distype} />
     </div>
   );
