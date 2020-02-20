@@ -1,45 +1,19 @@
-<!DOCTYPE html><html><head><link rel="manifest" href="/manifest.json"><link rel="stylesheet" href="/umi.css"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"><title>盎司一起</title><script>~(function (designWidth, maxWidth) {
-			var doc = document,
-				win = window,
-				docEl = doc.documentElement,
-				remStyle = document.createElement("style"),
-				tid;
-
-			function refreshRem() {
-				var width = docEl.getBoundingClientRect().width;
-				maxWidth = maxWidth || 540;
-				width > maxWidth && (width = maxWidth);
-				var rem = width * 100 / designWidth;
-				remStyle.innerHTML = 'html{font-size:' + rem + 'px;}';
-			}
-
-			if (docEl.firstElementChild) {
-				docEl.firstElementChild.appendChild(remStyle);
-			} else {
-				var wrap = doc.createElement("div");
-				wrap.appendChild(remStyle);
-				doc.write(wrap.innerHTML);
-				wrap = null;
-			}
-			refreshRem();
-
-			win.addEventListener("resize", function () {
-				clearTimeout(tid);
-				tid = setTimeout(refreshRem, 300);
-			}, false);
-
-			win.addEventListener("pageshow", function (e) {
-				if (e.persisted) {
-					clearTimeout(tid);
-					tid = setTimeout(refreshRem, 300);
-				}
-			}, false);
-
-			if (doc.readyState === "complete") {
-				doc.body.style.fontSize = "16px";
-			} else {
-				doc.addEventListener("DOMContentLoaded", function (e) {
-					doc.body.style.fontSize = "16px";
-				}, false);
-			}
-		})(375, 750);</script></head><body><div id="root" class="root"></div><script type="text/javascript"></script><script>window.routerBase = "/";</script><script async src="/pwacompat.min.js"></script><script src="/umi.js"></script></body></html>
+<!DOCTYPE html><html lang="en"><head><link rel="manifest" href="/manifest.json"><link rel="stylesheet" href="/umi.css"><meta charset="utf-8"><link rel="icon" href="/favicon.ico"><meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,viewport-fit=cover"><meta name="theme-color" content="#000000"><meta name="description" content="盎司一起"><link rel="apple-touch-icon" href="/icons/192.png"><link rel="manifest" href="/manifest.json"><title>盎司一起</title><script>window.routerBase = "/";</script><script async src="/pwacompat.min.js"></script></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div><script>const SW = {
+      // 注册
+      register() {
+        // 检测serviceWorker是否可用
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('./sw.js')
+            .then(function (registration) {
+              registration.update()
+              console.log('Registration successful, scope is:', registration.scope);
+            })
+            .catch(function (error) {
+              console.log('Service worker registration failed, error:', error);
+            })
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', function () {
+      SW.register();
+    })</script><script src="/umi.js"></script></body></html>

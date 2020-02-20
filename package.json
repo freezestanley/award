@@ -2,8 +2,8 @@
   "name": "ants",
   "private": true,
   "scripts": {
-    "start": "PORT=6800 umi dev",
-    "build": "umi build",
+    "start": "cross-env UMI_ENV=dev PORT=6800 umi dev",
+    "build": "cross-env UMI_ENV=prod umi build",
     "test": "umi test",
     "lint": "eslint {src,mock,tests}/**/*.{js,jsx} --fix",
     "precommit": "lint-staged",
@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "copy-to-clipboard": "^3.2.1",
+    "cross-env": "^7.0.0",
     "dva": "^2.6.0-beta.6",
     "moment": "^2.24.0",
     "numeral": "^2.0.6",

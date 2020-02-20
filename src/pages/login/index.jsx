@@ -2,7 +2,6 @@ import React, { useEffect, useState, useReducer, useRef } from 'react';
 import styled from './index.less';
 import Close from '../components/close';
 import router from 'umi/router';
-import * as service from './service';
 import { Toast } from 'zarm';
 import { connect } from 'dva';
 

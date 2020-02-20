@@ -2,7 +2,7 @@
 export default {
   treeShaking: true,
   define: {
-    'process.env.apiUrl': '',
+    'process.env.apiUrl': 'prod',
   },
   routes: [
     {
