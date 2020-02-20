@@ -75,3 +75,25 @@ export function pay_done(token) {
 		}
 	});
 }
+
+export function rece_qrcode(token) {
+	return axios({
+		url: '/api/share_qr',
+		method: 'POST',
+		data: {},
+		headers: {
+			token: token || cookie.get('token')
+		}
+	});
+}
+
+export function goto_look(token) {
+	return axios({
+		url: '/api/transfer_badge_link',
+		method: 'POST',
+		data: {},
+		headers: {
+			token: token || cookie.get('token')
+		}
+	});
+}
