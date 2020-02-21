@@ -45,6 +45,7 @@ const SubmitCode = props => {
   const [intval, setIntval] = useState();
   const [checkCode, setCheckCode] = useState();
   const [txt, setTxt] = useState('获取验证码');
+  const [firstVeri, setFirstVeri] = useState(false);
   const timerRef = useRef(0);
   let id,
     num = 60;
@@ -55,12 +56,14 @@ const SubmitCode = props => {
   }, []);
   const changeHandler = e => {
     let va = e.target.value.trim();
-    setCheckType(!/^[0-9a-zA-Z]{6}$/.test(va) ? false : true);
+    if (firstVeri) {
+      setCheckType(!/^[0-9a-zA-Z]{6}$/.test(va) ? false : true);
+    }
     setCheckCode(va);
   };
   const sendHandler = e => {
     setSend(false);
-
+    setFirstVeri(true);
     id = setInterval(() => {
       num--;
       if (num < 0) {

@@ -19,7 +19,7 @@ const Change = props => {
   };
   const changhandle = e => {
     let va = e.target.value.trim();
-    let t = /^[a-fA-F0-9]{40}$/.test(va);
+    let t = /^(0x)?[a-fA-F0-9]{40}$/.test(va);
     setDistype(t ? false : true);
     setEthAddress(va);
   };
