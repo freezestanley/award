@@ -1,4 +1,5 @@
 html, body, #root {
   height: 100%;
   background: #fff;
+  font-family: Arial, Helvetica, SimHei, sans-serif;
 }

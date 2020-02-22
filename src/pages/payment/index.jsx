@@ -41,8 +41,8 @@ export default props => {
       <Close />
       <div className={styled['login_title']}>支付中</div>
       <div className={styled['payment_content']}>
-        区块徽章项目目前由数个旨在探索区块链真实应用的从业者出于公益目的义务支撑维持，尚未商业化运营，转出徽章需要您向以上地址支付
-        <span>{unit}</span>,作为转账成本
+        区块徽章项目目前由爱好者志愿运营，无商业化收入，因此，转出徽章时需要您向以下地址支付
+        <span>{unit}</span>,以覆盖区块链转账费用
       </div>
       <div className={styled['shadow_box']}>
         <div className={styled['payment_link']}>
