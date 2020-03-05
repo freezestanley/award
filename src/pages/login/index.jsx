@@ -42,7 +42,7 @@ const GetCodePhone = (props) => {
 const SubmitCode = (props) => {
 	const [ checkType, setCheckType ] = useState(false);
 	const [ send, setSend ] = useState(false);
-	const [ intval, setIntval ] = useState();
+	const [ phone, setPhone ] = useState();
 	const [ checkCode, setCheckCode ] = useState();
 	const [ txt, setTxt ] = useState('获取验证码');
 	const [ firstVeri, setFirstVeri ] = useState(false);
@@ -83,6 +83,7 @@ const SubmitCode = (props) => {
 	const phoneChange = (e) => {
 		let va = e.target.value.trim();
 		setSend(!/^1[3456789]\d{9}$/.test(va) ? false : true);
+		setPhone(va);
 	};
 
 	return (
@@ -114,7 +115,7 @@ const SubmitCode = (props) => {
 			</div>
 			<div
 				className={styled['login_send']}
-				onClick={!checkType ? () => {} : (e) => props.clickhandle(checkCode)}
+				onClick={!checkType ? () => {} : (e) => props.clickhandle(checkCode, phone)}
 				style={{ background: !checkType ? '#eee' : '#000' }}
 			>
 				确认领取
@@ -143,12 +144,12 @@ const Login = (props) => {
 
 		setType(false);
 	};
-	const clickhandle = (e) => {
+	const clickhandle = (e, b) => {
 		debugger;
 		props.dispatch({
 			type: 'login/submitVert',
 			payload: {
-				phone: props.login.phone,
+				phone: b,
 				verify_code: e
 			},
 			callback: (res) => {
@@ -177,7 +178,7 @@ const Login = (props) => {
 
 			{/* <GetCodePhone phoneChange={(e) => phoneChange(e)} sendHandler={(e) => sendHandler(e)} /> */}
 
-			<SubmitCode clickhandle={(e) => clickhandle(e)} verifyHandler={(e) => verifyHandler(e)} />
+			<SubmitCode clickhandle={(e, b) => clickhandle(e, b)} verifyHandler={(e) => verifyHandler(e)} />
 
 			{console.log(props)}
 		</div>
