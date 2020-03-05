@@ -50,7 +50,7 @@ const SubmitCode = (props) => {
 	const phoneRef = useRef();
 
 	let id,
-		num = 60;
+		num = 60 * 5;
 	useEffect(() => {
 		return () => {
 			clearInterval(timerRef.current);
@@ -74,11 +74,14 @@ const SubmitCode = (props) => {
 				setTxt('获取验证码');
 				setSend(true);
 			} else {
-				setTxt(`重新发送${num}`);
+				let m = Math.floor(num / 60);
+				let s = num % 60;
+
+				setTxt(`重新发送${m <= 0 ? '' : m + '分'}${s + '秒'}`);
 			}
 		}, 1000);
 		timerRef.current = id;
-		props.verifyHandler();
+		props.verifyHandler(phone);
 	};
 	const phoneChange = (e) => {
 		let va = e.target.value.trim();
@@ -164,7 +167,7 @@ const Login = (props) => {
 		props.dispatch({
 			type: 'login/getverify',
 			payload: {
-				phone: props.login.phone
+				phone: e
 			}
 		});
 
