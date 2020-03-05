@@ -1,6 +1,7 @@
 import axios from 'axios';
 import cookie from '@/utils/cookie';
-const base = process.env.apiUrl === 'prod' ? 'https://www.memento.pub:8081' : '/api';
+// const base = process.env.apiUrl === 'prod' ? 'https://www.memento.pub:8081' : '/api';
+const base = 'https://www.memento.pub:8081';
 export function getPerson(params) {
 	return axios({
 		url: `${base}/total_user`,

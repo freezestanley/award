@@ -22,6 +22,7 @@ function PayOutPut(props) {
   const [userType, setUserType] = useState();
   const [link, setLink] = useState();
   const [eth, setEth] = useState();
+  const [tokenaddress, setTokenAddress] = useState()
   let token = props.login ? props.login.token || '' : '';
   useEffect(() => {
     Service.rece_qrcode().then(res => {
@@ -32,6 +33,8 @@ function PayOutPut(props) {
 
     Service.userStatus(token).then(res => {
       if (res.data.code === 0) {
+        debugger
+        setTokenAddress(res.data.data.token_address)
         setUserType(res.data.data.status);
         if (res.data.data.status === 2) {
           Service.goto_look().then(res => {
@@ -77,7 +80,7 @@ function PayOutPut(props) {
           <>
             <div className={styled['eth_money']}>
               <div>徽章已转出到 ETH 钱包</div>
-              <div>"0xish0xish0xish0xish0xish0xish0xish0xish0xish0xish0xish0xish0xish0xish"</div>
+        <div>{tokenaddress}</div>
             </div>
             <div className={styled['eth_address']}>
               前往查看：

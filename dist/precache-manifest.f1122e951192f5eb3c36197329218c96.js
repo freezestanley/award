@@ -28,59 +28,59 @@ self.__precacheManifest = [
     "url": "/umi.css"
   },
   {
-    "revision": "8abb1cc4c5b8dc8db59e3026d135eb1d",
-    "url": "/icons/favicon-16x16.png"
+    "revision": "98e177e60162bc26af57a5fdd65ab69e",
+    "url": "/icons/apple-touch-icon-60x60.png"
   },
   {
-    "revision": "f35595a3dc399435e01e",
+    "revision": "b665122df44b43c5b702",
     "url": "/p__index.chunk.css"
   },
   {
-    "revision": "2a3116edf716e9dce786",
+    "revision": "ada3226e889fd1a11941",
     "url": "/p__login.chunk.css"
   },
   {
-    "revision": "2a3116edf716e9dce786",
+    "revision": "ada3226e889fd1a11941",
     "url": "/p__login.async.js"
   },
   {
-    "revision": "1f7274561ba1f00b812f",
+    "revision": "f5f6033a87a7d86cf796",
     "url": "/p__login__models__index.js.async.js"
   },
   {
-    "revision": "5c49694ef8f1a9f9901b",
+    "revision": "4d176038fb97667cb327",
     "url": "/p__outputed.chunk.css"
   },
   {
-    "revision": "5c49694ef8f1a9f9901b",
+    "revision": "4d176038fb97667cb327",
     "url": "/p__outputed.async.js"
   },
   {
-    "revision": "67af8ab062764246c77d",
+    "revision": "aa64761a9803eba24858",
     "url": "/p__pay.chunk.css"
   },
   {
-    "revision": "67af8ab062764246c77d",
+    "revision": "aa64761a9803eba24858",
     "url": "/p__pay.async.js"
   },
   {
-    "revision": "62fa11a2b59f63115ac4",
+    "revision": "ee1629843c878a9ddc08",
     "url": "/p__payment.chunk.css"
   },
   {
-    "revision": "62fa11a2b59f63115ac4",
+    "revision": "ee1629843c878a9ddc08",
     "url": "/p__payment.async.js"
   },
   {
-    "revision": "59f1da352e832f762630",
+    "revision": "1a519b182f5ebd791095",
     "url": "/p__receive.chunk.css"
   },
   {
-    "revision": "59f1da352e832f762630",
+    "revision": "1a519b182f5ebd791095",
     "url": "/p__receive.async.js"
   },
   {
-    "revision": "03c304276ae29a3e6951",
+    "revision": "e0591225788a7fbe7bf5",
     "url": "/p__receive__models__index.js.async.js"
   },
   {
@@ -88,11 +88,11 @@ self.__precacheManifest = [
     "url": "/icons/apple-touch-icon-120x120.png"
   },
   {
-    "revision": "0ce4679c3a7c6c075273",
+    "revision": "20b42c2623412734293d",
     "url": "/p__eth__models__index.js.async.js"
   },
   {
-    "revision": "f35595a3dc399435e01e",
+    "revision": "b665122df44b43c5b702",
     "url": "/p__index.async.js"
   },
   {
@@ -104,11 +104,11 @@ self.__precacheManifest = [
     "url": "/layouts__index.chunk.css"
   },
   {
-    "revision": "71977d3d6d3126fefd24",
+    "revision": "f9366e03552ed81d8ad0",
     "url": "/p__eth.async.js"
   },
   {
-    "revision": "71977d3d6d3126fefd24",
+    "revision": "f9366e03552ed81d8ad0",
     "url": "/p__eth.chunk.css"
   },
   {
@@ -116,16 +116,16 @@ self.__precacheManifest = [
     "url": "/manifest.json"
   },
   {
-    "revision": "ec2c01423c80d74465f63c3da5fe389b",
-    "url": "/icons/144.png"
+    "revision": "f22d501a35a87d9f21701cb031f6ea17",
+    "url": "/icons/safari-pinned-tab.svg"
   },
   {
     "revision": "412ccbbf89399232c80c",
     "url": "/layouts__index.async.js"
   },
   {
-    "revision": "af2204ea0c88aaab35511768985c8020",
-    "url": "/icons/mstile-150x150.png"
+    "revision": "ec2c01423c80d74465f63c3da5fe389b",
+    "url": "/icons/144.png"
   },
   {
     "revision": "18f17462b535693be93bc1184774c5c9",
@@ -136,8 +136,8 @@ self.__precacheManifest = [
     "url": "/icons/msapplication-icon-144x144.png"
   },
   {
-    "revision": "f22d501a35a87d9f21701cb031f6ea17",
-    "url": "/icons/safari-pinned-tab.svg"
+    "revision": "af2204ea0c88aaab35511768985c8020",
+    "url": "/icons/mstile-150x150.png"
   },
   {
     "revision": "7bb996c13ef63ec0c84908ee354ec90e",
@@ -148,12 +148,12 @@ self.__precacheManifest = [
     "url": "/icons/apple-touch-icon-180x180.png"
   },
   {
-    "revision": "98e177e60162bc26af57a5fdd65ab69e",
-    "url": "/icons/apple-touch-icon-60x60.png"
-  },
-  {
     "revision": "bbedf478fa6adc4b1c8faa146a262bd2",
     "url": "/icons/apple-touch-icon-76x76.png"
+  },
+  {
+    "revision": "8abb1cc4c5b8dc8db59e3026d135eb1d",
+    "url": "/icons/favicon-16x16.png"
   },
   {
     "revision": "d7e488ade6dbf67eef4668ddd15c5b1d",
